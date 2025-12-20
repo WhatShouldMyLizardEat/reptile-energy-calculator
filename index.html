@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reptile Energy Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Reptile Energy Requirement Calculator</h1>
+  <p>
+    Estimate daily and weekly energy needs (kcal) and feeding amounts
+    for monitor lizards and snakes.
+  </p>
+
+  <label>Body weight (kg):</label><br>
+  <input type="number" id="weight" step="0.1"><br><br>
+
+  <label>Ambient temperature (°C):</label><br>
+  <input type="number" id="temperature" step="0.1" value="30"><br><br>
+
+  <label>Species group:</label><br>
+  <select id="group">
+    <option value="monitor">Monitor lizard</option>
+    <option value="snake">Snake</option>
+  </select><br><br>
+
+  <label>Prey type:</label><br>
+  <select id="prey">
+    <option value="rat">Whole rat</option>
+    <option value="mouse">Whole mouse</option>
+    <option value="chicken">Chicken meat</option>
+    <option value="fish">Whole fish</option>
+  </select><br><br>
+
+  <button onclick="calculateEnergy()">Calculate</button>
+
+  <h2 id="result"></h2>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
