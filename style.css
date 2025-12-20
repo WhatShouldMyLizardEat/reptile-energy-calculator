@@ -74,17 +74,13 @@ tbody tr:hover {
 
 .hero {
   width: 100%;
-  height: 280px;              /* controls header height */
+  height: 260px;              /* adjust if needed */
   background-image: url("header.jpg");
-  background-size: cover;     /* THIS fixes scaling */
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
+
 
 
 .hero::before {
@@ -115,4 +111,5 @@ tbody tr:hover {
   margin: 40px auto;
   padding: 0 20px;
 }
+
 
