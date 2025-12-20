@@ -59,12 +59,20 @@ function calculateEnergy() {
   const gramsPerFeeding = gramsPerWeek / feedingsPerWeek;
 
   // === Output ===
-  document.getElementById("result").innerText =
-    "Energy requirement:\n" +
-    kcalDay.toFixed(1) + " kcal/day\n" +
-    kcalWeek.toFixed(1) + " kcal/week\n\n" +
-    "Estimated food intake:\n" +
-    gramsPerWeek.toFixed(0) + " g prey per week\n" +
-    gramsPerFeeding.toFixed(0) + " g per feeding\n" +
-    "(" + feedingsPerWeek + " feeding(s) per week)";
-}
+ document.getElementById("resultTable").style.display = "table";
+
+document.getElementById("kcalDay").innerText =
+  `${kcalDay.toFixed(1)} kcal/day`;
+
+document.getElementById("kcalWeek").innerText =
+  `${kcalWeek.toFixed(1)} kcal/week`;
+
+document.getElementById("preyWeek").innerText =
+  `${preyPerWeek.toFixed(0)} g prey/week`;
+
+document.getElementById("preyFeeding").innerText =
+  `${preyPerFeeding.toFixed(0)} g per feeding`;
+
+document.getElementById("feedingFreq").innerText =
+  `${feedingsPerWeek} feeding(s) per week`;
+
