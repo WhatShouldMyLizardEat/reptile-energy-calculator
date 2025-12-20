@@ -107,3 +107,9 @@ tbody tr:hover {
 .hero p {
   font-size: 1.1em;
 }
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
