@@ -3,208 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <title>Reptile Energy Calculator</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f5f5f5;
-    }
-
-    /* ===== HERO HEADER ===== */
-    .hero {
-      width: 100%;
-      height: 260px;
-      background-image: url("header.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    /* ===== NAV ===== */
-    nav {
-      background: #2c3e50;
-      padding: 12px;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* ===== MAIN CONTAINER ===== */
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    h1, h2 {
-      color: #2c3e50;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    input, select, button {
-      padding: 8px;
-      font-size: 16px;
-      width: 100%;
-      max-width: 300px;
-    }
-
-    button {
-      margin-top: 15px;
-      cursor: pointer;
-    }
-
-    /* ===== TABLE ===== */
-    table {
-      margin-top: 25px;
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
-    }
-
-    th {
-      background-color: #2c3e50;
-      color: white;
-      text-align: left;
-    }
-
-    tbody tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    /* ===== INFO SECTIONS ===== */
-    .info {
-      margin-top: 40px;
-      padding: 20px;
-      background: #fafafa;
-    }
-
-    .disclaimer {
-      border-left: 4px solid #999;
-    }
-
-    footer {
-      text-align: center;
-      margin: 50px 0;
-      font-size: 0.9em;
-      color: #555;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HERO IMAGE -->
-  <header class="hero"></header>
+<nav>
+  <a href="index.html">Energy Calculator</a> |
+  <a href="nutrition.html">Nutrient Calculator</a>
+</nav>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <a href="index.html">Energy Calculator</a> |
-    <a href="nutrition.html">Nutrient Calculator</a>
-  </nav>
+<header class="hero"></header>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
-    <h1>Reptile Energy Requirement Calculator</h1>
-    <p>
-      Estimate daily and weekly energy needs (kcal) and feeding amounts
-      for monitor lizards and snakes.
-    </p>
+<div class="container">
 
-    <label>Body weight (kg):</label><br>
-    <input type="number" id="weight" step="0.1"><br><br>
+  <h1>Reptile Energy Requirement Calculator</h1>
+  <p>
+    Estimate daily and weekly energy needs (kcal) and feeding amounts
+    for monitor lizards and snakes.
+  </p>
 
-    <label>Ambient temperature (°C):</label><br>
-    <input type="number" id="temperature" step="0.1" value="30"><br><br>
+  <label>Body weight (kg):</label><br>
+  <input type="number" id="weight" step="0.1"><br><br>
 
-    <label>Reptile group:</label><br>
-    <select id="group">
-      <option value="monitor">Monitor lizard</option>
-      <option value="snake">Snake</option>
-    </select><br><br>
+  <label>Ambient temperature (°C):</label><br>
+  <input type="number" id="temperature" step="0.1" value="30"><br><br>
 
-    <label>Prey type:</label><br>
-    <select id="prey">
-      <option value="rat">Whole rat</option>
-      <option value="mouse">Whole mouse</option>
-      <option value="chicken">Chicken meat</option>
-      <option value="fish">Whole fish</option>
-    </select><br><br>
+  <label>Species group:</label><br>
+  <select id="group">
+    <option value="monitor">Monitor lizard</option>
+    <option value="snake">Snake</option>
+  </select><br><br>
 
-    <button onclick="calculateEnergy()">Calculate</button>
+  <label>Prey type:</label><br>
+  <select id="prey">
+    <option value="rat">Whole rat</option>
+    <option value="mouse">Whole mouse</option>
+    <option value="chicken">Chicken meat</option>
+    <option value="fish">Whole fish</option>
+  </select><br><br>
 
-    <!-- RESULTS -->
-    <div id="resultsSection" style="display:none;">
-      <h2>Calculated Results</h2>
+  <button onclick="calculateEnergy()">Calculate</button>
 
-      <table>
+  <!-- RESULTS -->
+  <div id="resultsSection" style="display:none;">
+
+    <h2>Calculated Results</h2>
+
+    <table id="resultTable">
+      <thead>
         <tr>
           <th>Category</th>
           <th>Value</th>
         </tr>
+      </thead>
+      <tbody>
+        <tr><td>Energy (per day)</td><td id="kcalDay"></td></tr>
+        <tr><td>Energy (per week)</td><td id="kcalWeek"></td></tr>
+        <tr><td>Total prey per week</td><td id="preyWeek"></td></tr>
+        <tr><td>Prey per feeding</td><td id="preyFeeding"></td></tr>
+        <tr><td>Feeding frequency</td><td id="feedingFreq"></td></tr>
+      </tbody>
+    </table>
+
+    <h2 style="margin-top:40px;">Estimated Nutrient Intake</h2>
+
+    <table id="nutrientTable" style="display:none;">
+      <thead>
         <tr>
-          <td>Energy requirement (per day)</td>
-          <td id="kcalDay"></td>
+          <th>Nutrient</th>
+          <th>Per week</th>
         </tr>
-        <tr>
-          <td>Energy requirement (per week)</td>
-          <td id="kcalWeek"></td>
-        </tr>
-        <tr>
-          <td>Total prey per week</td>
-          <td id="preyWeek"></td>
-        </tr>
-        <tr>
-          <td>Prey per feeding</td>
-          <td id="preyFeeding"></td>
-        </tr>
-        <tr>
-          <td>Feeding frequency</td>
-          <td id="feedingFreq"></td>
-        </tr>
-      </table>
-    </div>
+      </thead>
+      <tbody>
+        <tr><td>Protein</td><td id="protein"></td></tr>
+        <tr><td>Fat</td><td id="fat"></td></tr>
+        <tr><td>Calcium</td><td id="calcium"></td></tr>
+        <tr><td>Phosphorus</td><td id="phosphorus"></td></tr>
+        <tr><td><strong>Ca:P ratio</strong></td><td id="capRatio"></td></tr>
+      </tbody>
+    </table>
+
+    <p id="capNote"></p>
   </div>
 
-  <!-- INFO -->
-  <div class="container info">
-    <h2>How this calculator works</h2>
-    <ul>
-      <li>Allometric metabolic scaling (BM<sup>0.75</sup>)</li>
-      <li>Q10 temperature correction (Q10 = 2, ref 30°C)</li>
-      <li>Average prey energy density</li>
-    </ul>
-  </div>
+</div>
 
-  <div class="container info disclaimer">
-    <h2>Disclaimer</h2>
-    <p>
-      Estimates only. Always combine with body condition, behavior,
-      and veterinary judgment.
-    </p>
-  </div>
-
-  <footer>
+<footer>
+  <p>
     Reptile Energy Calculator v1.0<br>
     Developed by Abdul Fattah
-  </footer>
+  </p>
+</footer>
 
-  <!-- ===== JAVASCRIPT (INLINE) ==
+<script src="script.js"></script>
+</body>
+</html>
