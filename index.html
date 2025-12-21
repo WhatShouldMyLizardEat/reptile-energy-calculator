@@ -1,121 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Reptile Energy Calculator</title>
+  <meta charset="UTF-8">
+  <title>Reptile Energy Calculator</title>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f5f5f5;
-  }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
 
-  h1, h2 {
-    color: #2c3e50;
-  }
+    /* ===== HERO HEADER ===== */
+    .hero {
+      width: 100%;
+      height: 260px;
+      background-image: url("header.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-  label {
-    font-weight: bold;
-  }
+    /* ===== NAV ===== */
+    nav {
+      background: #2c3e50;
+      padding: 12px;
+      text-align: center;
+    }
 
-  input, select, button {
-    padding: 8px;
-    font-size: 16px;
-    width: 100%;
-    max-width: 300px;
-  }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+    }
 
-  button {
-    margin-top: 15px;
-    cursor: pointer;
-  }
+    nav a:hover {
+      text-decoration: underline;
+    }
 
-  table {
-    margin-top: 25px;
-    border-collapse: collapse;
-    width: 100%;
-  }
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 
-  th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
-  }
+    h1, h2 {
+      color: #2c3e50;
+    }
 
-  th {
-    background-color: #2c3e50;
-    color: white;
-    text-align: left;
-  }
+    label {
+      font-weight: bold;
+    }
 
-  tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
+    input, select, button {
+      padding: 8px;
+      font-size: 16px;
+      width: 100%;
+      max-width: 300px;
+    }
 
-  .container {
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
+    button {
+      margin-top: 15px;
+      cursor: pointer;
+    }
 
-  .info {
-    margin-top: 40px;
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-  }
+    /* ===== TABLE ===== */
+    table {
+      margin-top: 25px;
+      border-collapse: collapse;
+      width: 100%;
+    }
 
-  footer {
-    margin-top: 50px;
-    font-size: 0.9em;
-    color: #555;
-    text-align: center;
-  }
-</style>
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+
+    th {
+      background-color: #2c3e50;
+      color: white;
+      text-align: left;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    /* ===== INFO SECTIONS ===== */
+    .info {
+      margin-top: 40px;
+      padding: 20px;
+      background: #fafafa;
+    }
+
+    .disclaimer {
+      border-left: 4px solid #999;
+    }
+
+    footer {
+      text-align: center;
+      margin: 50px 0;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>Reptile Energy Requirement Calculator</h1>
-  <p>
-    Estimate daily and weekly energy needs (kcal) and feeding amounts
-    for reptiles based on ecological group.
-  </p>
+  <!-- HERO IMAGE -->
+  <header class="hero"></header>
 
-  <label>Body weight (kg):</label><br>
-  <input type="number" id="weight" step="0.1"><br><br>
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="index.html">Energy Calculator</a> |
+    <a href="nutrition.html">Nutrient Calculator</a>
+  </nav>
 
-  <label>Ambient temperature (°C):</label><br>
-  <input type="number" id="temperature" step="0.1" value="30"><br><br>
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <h1>Reptile Energy Requirement Calculator</h1>
+    <p>
+      Estimate daily and weekly energy needs (kcal) and feeding amounts
+      for monitor lizards and snakes.
+    </p>
 
-  <label>Reptile group:</label><br>
-  <select id="group">
-    <option value="varanid-large">Large varanid (Komodo, water monitor)</option>
-    <option value="varanid-small">Small / medium varanid</option>
-    <option value="snake-ambush">Ambush snake (python, boa)</option>
-    <option value="snake-active">Active snake (colubrid)</option>
-  </select><br><br>
+    <label>Body weight (kg):</label><br>
+    <input type="number" id="weight" step="0.1"><br><br>
 
-  <label>Prey type:</label><br>
-  <select id="prey">
-    <option value="rat">Whole rat</option>
-    <option value="mouse">Whole mouse</option>
-    <option value="chicken">Chicken meat</option>
-    <option value="fish">Whole fish</option>
-  </select><br><br>
+    <label>Ambient temperature (°C):</label><br>
+    <input type="number" id="temperature" step="0.1" value="30"><br><br>
 
-  <button onclick="calculateEnergy()">Calculate</button>
+    <label>Reptile group:</label><br>
+    <select id="group">
+      <option value="monitor">Monitor lizard</option>
+      <option value="snake">Snake</option>
+    </select><br><br>
 
-  <div id="resultsSection" style="display:none;">
-    <h2>Calculated Results</h2>
-    <p id="groupDesc"></p>
+    <label>Prey type:</label><br>
+    <select id="prey">
+      <option value="rat">Whole rat</option>
+      <option value="mouse">Whole mouse</option>
+      <option value="chicken">Chicken meat</option>
+      <option value="fish">Whole fish</option>
+    </select><br><br>
 
-    <table>
-      <tbody>
+    <button onclick="calculateEnergy()">Calculate</button>
+
+    <!-- RESULTS -->
+    <div id="resultsSection" style="display:none;">
+      <h2>Calculated Results</h2>
+
+      <table>
+        <tr>
+          <th>Category</th>
+          <th>Value</th>
+        </tr>
         <tr>
           <td>Energy requirement (per day)</td>
           <td id="kcalDay"></td>
@@ -136,89 +180,31 @@
           <td>Feeding frequency</td>
           <td id="feedingFreq"></td>
         </tr>
-      </tbody>
-    </table>
+      </table>
+    </div>
   </div>
-</div>
 
-<div class="info">
-  <h2>How this calculator works</h2>
-  <ul>
-    <li>Energy is estimated using body mass<sup>0.75</sup></li>
-    <li>Temperature adjusted using Q10 = 2 (reference 30 °C)</li>
-    <li>Feeding frequency reflects foraging ecology</li>
-  </ul>
-</div>
+  <!-- INFO -->
+  <div class="container info">
+    <h2>How this calculator works</h2>
+    <ul>
+      <li>Allometric metabolic scaling (BM<sup>0.75</sup>)</li>
+      <li>Q10 temperature correction (Q10 = 2, ref 30°C)</li>
+      <li>Average prey energy density</li>
+    </ul>
+  </div>
 
-<footer>
-  Reptile Energy Calculator v1.0<br>
-  Developed by Abdul Fattah
-</footer>
+  <div class="container info disclaimer">
+    <h2>Disclaimer</h2>
+    <p>
+      Estimates only. Always combine with body condition, behavior,
+      and veterinary judgment.
+    </p>
+  </div>
 
-<script>
-function calculateEnergy() {
+  <footer>
+    Reptile Energy Calculator v1.0<br>
+    Developed by Abdul Fattah
+  </footer>
 
-  const weight = parseFloat(document.getElementById("weight").value);
-  const temperature = parseFloat(document.getElementById("temperature").value);
-  const group = document.getElementById("group").value;
-  const prey = document.getElementById("prey").value;
-
-  if (!weight || weight <= 0) {
-    alert("Please enter a valid body weight.");
-    return;
-  }
-
-  const groupParameters = {
-    "varanid-large": {
-      baseKcal: 40,
-      feedings: 2,
-      desc: "Large, highly active varanid"
-    },
-    "varanid-small": {
-      baseKcal: 35,
-      feedings: 3,
-      desc: "Small to medium varanid"
-    },
-    "snake-ambush": {
-      baseKcal: 25,
-      feedings: 1,
-      desc: "Low-activity ambush predator"
-    },
-    "snake-active": {
-      baseKcal: 30,
-      feedings: 1,
-      desc: "Active foraging snake"
-    }
-  };
-
-  const preyEnergy = {
-    rat: 2.5,
-    mouse: 2.3,
-    chicken: 1.6,
-    fish: 1.4
-  };
-
-  const params = groupParameters[group];
-
-  const baseEnergy = params.baseKcal * Math.pow(weight, 0.75);
-  const tempFactor = Math.pow(2, (temperature - 30) / 10);
-
-  const kcalDay = baseEnergy * tempFactor;
-  const kcalWeek = kcalDay * 7;
-
-  const preyPerWeek = kcalWeek / preyEnergy[prey];
-  const preyPerFeeding = preyPerWeek / params.feedings;
-
-  document.getElementById("kcalDay").innerText = kcalDay.toFixed(0) + " kcal";
-  document.getElementById("kcalWeek").innerText = kcalWeek.toFixed(0) + " kcal";
-  document.getElementById("preyWeek").innerText = preyPerWeek.toFixed(0) + " g";
-  document.getElementById("preyFeeding").innerText = preyPerFeeding.toFixed(0) + " g";
-  document.getElementById("feedingFreq").innerText = params.feedings + "× per week";
-  document.getElementById("groupDesc").innerText = params.desc;
-
-  document.getElementById("resultsSection").style.display = "block";
-}
-</script>
-
-</body>
-</html>
+  <!-- ===== JAVASCRIPT (INLINE) ==
