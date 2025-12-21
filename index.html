@@ -1,8 +1,3 @@
-<nav>
-  <a href="index.html">Energy Calculator</a> |
-  <a href="nutrition.html">Nutrient Calculator</a>
-</nav>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,20 +8,20 @@
 
 <body>
 
- <header class="hero"></header>
+<nav>
+  <a href="index.html">Energy Calculator</a> |
+  <a href="nutrition.html">Nutrient Calculator</a>
+</nav>
+
+<header class="hero"></header>
 
 <div class="container">
+
   <h1>Reptile Energy Requirement Calculator</h1>
   <p>
     Estimate daily and weekly energy needs (kcal) and feeding amounts
     for monitor lizards and snakes.
   </p>
-
-  <!-- rest of your form goes here -->
-</div>
-
-
-  <div class="container">
 
   <label>Body weight (kg):</label><br>
   <input type="number" id="weight" step="0.1"><br><br>
@@ -53,7 +48,7 @@
   <!-- RESULTS -->
   <div id="resultsSection" style="display:none;">
 
-    <h2 style="margin-top:30px;">Calculated Results</h2>
+    <h2>Calculated Results</h2>
 
     <table id="resultTable">
       <thead>
@@ -63,127 +58,44 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Energy requirement (per day)</td>
-          <td id="kcalDay"></td>
-        </tr>
-        <tr>
-          <td>Energy requirement (per week)</td>
-          <td id="kcalWeek"></td>
-        </tr>
-        <tr>
-          <td>Total prey per week</td>
-          <td id="preyWeek"></td>
-        </tr>
-        <tr>
-          <td>Prey per feeding</td>
-          <td id="preyFeeding"></td>
-        </tr>
-        <tr>
-          <td>Feeding frequency</td>
-          <td id="feedingFreq"></td>
-        </tr>
+        <tr><td>Energy (per day)</td><td id="kcalDay"></td></tr>
+        <tr><td>Energy (per week)</td><td id="kcalWeek"></td></tr>
+        <tr><td>Total prey per week</td><td id="preyWeek"></td></tr>
+        <tr><td>Prey per feeding</td><td id="preyFeeding"></td></tr>
+        <tr><td>Feeding frequency</td><td id="feedingFreq"></td></tr>
       </tbody>
     </table>
-<h2 style="margin-top:40px;">Estimated Nutrient Intake</h2>
 
-<table id="nutrientTable" style="display:none;">
-  <thead>
-    <tr>
-      <th>Nutrient</th>
-      <th>Estimated intake (per week)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Protein</td>
-      <td id="protein"></td>
-    </tr>
-    <tr>
-      <td>Fat</td>
-      <td id="fat"></td>
-    </tr>
-    <tr>
-      <td>Calcium</td>
-      <td id="calcium"></td>
-    </tr>
-    <tr>
-      <td>Phosphorus</td>
-      <td id="phosphorus"></td>
-    </tr>
-    <tr>
-      <td><strong>Ca : P ratio</strong></td>
-      <td id="capRatio"></td>
-    </tr>
-  </tbody>
-</table>   
+    <h2 style="margin-top:40px;">Estimated Nutrient Intake</h2>
+
+    <table id="nutrientTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>Nutrient</th>
+          <th>Per week</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Protein</td><td id="protein"></td></tr>
+        <tr><td>Fat</td><td id="fat"></td></tr>
+        <tr><td>Calcium</td><td id="calcium"></td></tr>
+        <tr><td>Phosphorus</td><td id="phosphorus"></td></tr>
+        <tr><td><strong>Ca:P ratio</strong></td><td id="capRatio"></td></tr>
+      </tbody>
+    </table>
+
     <p id="capNote"></p>
+  </div>
+
 </div>
 
-  <!-- INFO -->
-  <section class="info">
-    <h2>How this calculator works</h2>
-    <p>
-      This calculator estimates maintenance energy requirements for large reptiles
-      (monitor lizards and snakes) using metabolic scaling principles commonly applied
-      in herpetology and zoo nutrition.
-    </p>
-    <ul>
-      <li>
-        <strong>Metabolic scaling:</strong>
-        Basal energy requirement is estimated using body mass raised to the power of 0.75
-        (BM<sup>0.75</sup>).
-      </li>
-      <li>
-        <strong>Temperature adjustment:</strong>
-        Energy demand is adjusted using a Q10 of 2 with 30 °C as reference.
-      </li>
-      <li>
-        <strong>Feeding conversion:</strong>
-        Weekly energy requirements are converted to prey mass using average prey energy values.
-      </li>
-    </ul>
-  </section>
-
-  <section class="info">
-    <h2>References</h2>
-    <ul>
-      <li>Nagy, K. A. (2005). Field metabolic rate and body size. <em>JEB</em>.</li>
-      <li>Withers, P. C. (1992). <em>Comparative Animal Physiology</em>.</li>
-      <li>Secor, S. M. (2009). Digestive physiology in reptiles.</li>
-      <li>Fidgett & Gardner (2014). Nutrition and feeding of reptiles.</li>
-      <li>AZA Nutrition Advisory Group – Reptile Guidelines.</li>
-    </ul>
-  </section>
-
-  <section class="info disclaimer">
-    <h2>Disclaimer</h2>
-    <p>
-      This calculator provides <strong>estimates only</strong> and is intended for
-      educational and husbandry-planning purposes.
-    </p>
-    <p>
-      Always combine outputs with body condition scoring, behavior, and veterinary judgment.
-    </p>
-  </section>
-
-  <footer>
-    <p>
-      Reptile Energy Calculator v1.0<br>
-      Developed by Abdul Fattah<br>
-      Based on zoo nutrition and herpetological literature
-    </p>
-  </footer>
+<footer>
+  <p>
+    Reptile Energy Calculator v1.0<br>
+    Developed by Abdul Fattah
+  </p>
+</footer>
 
 <script src="script.js"></script>
-
-</div>  
 </body>
 </html>
-
-
-
-
-
-
-
