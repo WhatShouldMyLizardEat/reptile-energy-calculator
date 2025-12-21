@@ -45,6 +45,12 @@ function calculateEnergy() {
   }
 
   const preyPerWeek = kcalWeek / preyKcalPerGram;
+const nutrientData = {
+  rat:     { protein: 16, fat: 10, ca: 240, p: 200 },
+  mouse:   { protein: 18, fat: 8,  ca: 200, p: 180 },
+  chicken: { protein: 20, fat: 5,  ca: 12,  p: 180 },
+  fish:    { protein: 19, fat: 6,  ca: 20,  p: 220 }
+};
 
   // --- Feeding frequency ---
   let feedingsPerWeek;
@@ -75,3 +81,4 @@ function calculateEnergy() {
   document.getElementById("feedingFreq").innerText =
     feedingsPerWeek + " feeding(s) per week";
 }
+
