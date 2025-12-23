@@ -11,10 +11,10 @@
   <header class="hero"></header>
 
   <!-- NAVIGATION (matches Komodo nutrition style) -->
- <nav>
-  <a href="index.html">Energy Calculator</a> |
-  <a href="nutrition.html">Komodo Nutrition</a>
- </nav>
+  <nav class="main-nav">
+    <a href="index.html" class="nav-btn">Energy Calculator</a>
+    <a href="nutrition.html" class="nav-btn">Komodo Nutrition</a>
+  </nav>
 
   <!-- MAIN CONTENT -->
   <div class="container">
@@ -150,6 +150,19 @@
     }
   </script>
 
+  <!-- Small script to mark the current nav button as active -->
+  <script>
+    (function(){
+      // Compare link href to page filename and add .active
+      const current = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-btn').forEach(a=>{
+        if (a.getAttribute('href') === current) {
+          a.classList.add('active');
+          a.setAttribute('aria-current','page');
+        }
+      });
+    })();
+  </script>
+
 </body>
 </html>
-
