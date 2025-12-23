@@ -29,22 +29,20 @@
     <option value="goat">Goat meat (with bone)</option>
     <option value="deer">Deer meat (with bone)</option>
   </select><br><br>
-  
-  <label>Weekly feeding plan (g prey per week):</label><br>
- <label>Komodo Dragon Life Stage (Preset):</label><br>
-<select id="preset" onchange="applyPreset()">
-  <option value="">-- Select preset --</option>
-  <option value="juvenile">Juvenile</option>
-  <option value="subadult">Subadult</option>
-  <option value="adult">Adult</option>
-</select>
-<label>Komodo dragon body weight (kg):</label><br>
-<input type="number" id="bodyWeight" step="0.1"><br><br>
 
-<p style="font-size:0.9em;color:#555;">
-Presets auto-fill a typical 4-week feeding plan. You may adjust values afterward.
-</p>
-  
+  <label>Komodo Dragon Life Stage (Preset):</label><br>
+  <select id="preset">
+    <option value="">-- Select preset --</option>
+    <option value="juvenile">Juvenile</option>
+    <option value="subadult">Subadult</option>
+    <option value="adult">Adult</option>
+  </select><br><br>
+
+  <label>Komodo dragon body weight (kg):</label><br>
+  <input type="number" id="bodyWeight" step="0.1"><br><br>
+
+  <label>Weekly feeding plan (g prey per week):</label><br>
+
   <table>
     <thead>
       <tr>
@@ -73,21 +71,13 @@ Presets auto-fill a typical 4-week feeding plan. You may adjust values afterward
       <tr><td>Calcium</td><td id="calcium"></td></tr>
       <tr><td>Phosphorus</td><td id="phosphorus"></td></tr>
       <tr><td><strong>Ca : P ratio</strong></td><td id="capRatio"></td></tr>
-      <tr>
-      <td>Estimated energy requirement (per week)</td>
-      <td id="energyReq"></td>
-      </tr>
-      <tr>
-  <td><strong>Energy balance</strong></td>
-  <td id="energyBalance"></td>
-</tr>
-
+      <tr><td>Estimated energy requirement (per week)</td><td id="energyReq"></td></tr>
+      <tr><td><strong>Energy balance</strong></td><td id="energyBalance"></td></tr>
     </table>
+
     <p id="energyNote"></p>
-    
     <p id="capNote" style="margin-top:15px;font-weight:bold;"></p>
   </div>
-
 </div>
 
 <footer>
