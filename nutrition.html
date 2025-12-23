@@ -10,9 +10,9 @@
 
 <header class="hero"></header>
 
-<nav>
-  <a href="index.html">Energy Calculator</a> |
-  <a href="nutrition.html">Komodo Nutrition</a>
+<nav class="main-nav">
+  <a href="index.html" class="nav-btn">Energy Calculator</a>
+  <a href="nutrition.html" class="nav-btn">Komodo Nutrition</a>
 </nav>
 
 <div class="container">
@@ -99,5 +99,19 @@ Presets auto-fill a typical 4-week feeding plan. You may adjust values afterward
 </footer>
 
 <script src="nutrition.js"></script>
+
+<!-- Small script to mark the current nav button as active -->
+<script>
+  (function(){
+    const current = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-btn').forEach(a=>{
+      if (a.getAttribute('href') === current) {
+        a.classList.add('active');
+        a.setAttribute('aria-current','page');
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
