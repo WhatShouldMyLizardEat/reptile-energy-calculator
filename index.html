@@ -5,97 +5,150 @@
   <title>Reptile Energy Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<nav>
-  <a href="index.html">Energy Calculator</a> |
-  <a href="nutrition.html">Nutrient Calculator</a>
-</nav>
+  <!-- HERO IMAGE -->
+  <header class="hero"></header>
 
-<header class="hero"></header>
+  <!-- NAVIGATION (matches Komodo nutrition style) -->
+  <nav>
+    <a href="index.html">Energy Calculator</a> |
+    <a href="nutrition.html">Komodo Nutrition</a>
+  </nav>
 
-<div class="container">
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <h1>Reptile Energy Requirement Calculator</h1>
+    <p>
+      Estimate daily and weekly energy needs (kcal) and feeding amounts
+      for monitor lizards and snakes.
+    </p>
 
-  <h1>Reptile Energy Requirement Calculator</h1>
-  <p>
-    Estimate daily and weekly energy needs (kcal) and feeding amounts
-    for monitor lizards and snakes.
-  </p>
+    <label>Body weight (kg):</label><br>
+    <input type="number" id="weight" step="0.1"><br><br>
 
-  <label>Body weight (kg):</label><br>
-  <input type="number" id="weight" step="0.1"><br><br>
+    <label>Ambient temperature (°C):</label><br>
+    <input type="number" id="temperature" step="0.1" value="30"><br><br>
 
-  <label>Ambient temperature (°C):</label><br>
-  <input type="number" id="temperature" step="0.1" value="30"><br><br>
+    <label>Reptile group:</label><br>
+    <select id="group">
+      <option value="monitor">Monitor lizard</option>
+      <option value="snake">Snake</option>
+    </select><br><br>
 
-  <label>Species group:</label><br>
-  <select id="group">
-    <option value="monitor">Monitor lizard</option>
-    <option value="snake">Snake</option>
-  </select><br><br>
+    <label>Prey type:</label><br>
+    <select id="prey">
+      <option value="rat">Whole rat</option>
+      <option value="mouse">Whole mouse</option>
+      <option value="chicken">Chicken meat</option>
+      <option value="fish">Whole fish</option>
+    </select><br><br>
 
-  <label>Prey type:</label><br>
-  <select id="prey">
-    <option value="rat">Whole rat</option>
-    <option value="mouse">Whole mouse</option>
-    <option value="chicken">Chicken meat</option>
-    <option value="fish">Whole fish</option>
-  </select><br><br>
+    <button onclick="calculateEnergy()">Calculate</button>
 
-  <button onclick="calculateEnergy()">Calculate</button>
+    <!-- RESULTS -->
+    <div id="resultsSection" style="display:none;">
+      <h2>Calculated Results</h2>
 
-  <!-- RESULTS -->
-  <div id="resultsSection" style="display:none;">
-
-    <h2>Calculated Results</h2>
-
-    <table id="resultTable">
-      <thead>
+      <table>
         <tr>
           <th>Category</th>
           <th>Value</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr><td>Energy (per day)</td><td id="kcalDay"></td></tr>
-        <tr><td>Energy (per week)</td><td id="kcalWeek"></td></tr>
-        <tr><td>Total prey per week</td><td id="preyWeek"></td></tr>
-        <tr><td>Prey per feeding</td><td id="preyFeeding"></td></tr>
-        <tr><td>Feeding frequency</td><td id="feedingFreq"></td></tr>
-      </tbody>
-    </table>
-
-    <h2 style="margin-top:40px;">Estimated Nutrient Intake</h2>
-
-    <table id="nutrientTable" style="display:none;">
-      <thead>
         <tr>
-          <th>Nutrient</th>
-          <th>Per week</th>
+          <td>Energy requirement (per day)</td>
+          <td id="kcalDay"></td>
         </tr>
-      </thead>
-      <tbody>
-        <tr><td>Protein</td><td id="protein"></td></tr>
-        <tr><td>Fat</td><td id="fat"></td></tr>
-        <tr><td>Calcium</td><td id="calcium"></td></tr>
-        <tr><td>Phosphorus</td><td id="phosphorus"></td></tr>
-        <tr><td><strong>Ca:P ratio</strong></td><td id="capRatio"></td></tr>
-      </tbody>
-    </table>
-
-    <p id="capNote"></p>
+        <tr>
+          <td>Energy requirement (per week)</td>
+          <td id="kcalWeek"></td>
+        </tr>
+        <tr>
+          <td>Total prey per week</td>
+          <td id="preyWeek"></td>
+        </tr>
+        <tr>
+          <td>Prey per feeding</td>
+          <td id="preyFeeding"></td>
+        </tr>
+        <tr>
+          <td>Feeding frequency</td>
+          <td id="feedingFreq"></td>
+        </tr>
+      </table>
+    </div>
   </div>
 
-</div>
+  <!-- INFO SECTIONS -->
+  <div class="container info">
+    <h2>How this calculator works</h2>
+    <ul>
+      <li>Allometric metabolic scaling (BM<sup>0.75</sup>)</li>
+      <li>Q10 temperature correction (Q10 = 2, ref 30°C)</li>
+      <li>Average prey energy density</li>
+    </ul>
+  </div>
 
-<footer>
-  <p>
+  <div class="container info disclaimer">
+    <h2>Disclaimer</h2>
+    <p>
+      This calculator provides <strong>estimates only</strong> and is intended for
+      educational and husbandry-planning purposes. Combine outputs with body condition
+      scoring, behavior monitoring, and veterinary judgment.
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
     Reptile Energy Calculator v1.0<br>
     Developed by Abdul Fattah
-  </p>
-</footer>
+  </footer>
 
-<script src="script.js"></script>
+  <!-- JAVASCRIPT -->
+  <script>
+    function calculateEnergy() {
+
+      const weight = parseFloat(document.getElementById("weight").value);
+      const temperature = parseFloat(document.getElementById("temperature").value);
+      const group = document.getElementById("group").value;
+      const prey = document.getElementById("prey").value;
+
+      if (!weight || weight <= 0) {
+        alert("Please enter a valid body weight.");
+        return;
+      }
+
+      // Base metabolic estimate
+      let baseEnergy = (group === "monitor")
+        ? 40 * Math.pow(weight, 0.75)
+        : 30 * Math.pow(weight, 0.75);
+
+      // Temperature correction (Q10 = 2, reference 30°C)
+      const tempFactor = Math.pow(2, (temperature - 30) / 10);
+      const kcalDay = baseEnergy * tempFactor;
+      const kcalWeek = kcalDay * 7;
+
+      // Prey energy density (kcal/g)
+      const preyEnergy = {
+        rat: 2.5,
+        mouse: 2.3,
+        chicken: 1.6,
+        fish: 1.4
+      };
+
+      const preyPerWeek = kcalWeek / preyEnergy[prey];
+      const feedingFreq = (group === "monitor") ? 2 : 1;
+      const preyPerFeeding = preyPerWeek / feedingFreq;
+
+      document.getElementById("kcalDay").innerText = kcalDay.toFixed(0) + " kcal";
+      document.getElementById("kcalWeek").innerText = kcalWeek.toFixed(0) + " kcal";
+      document.getElementById("preyWeek").innerText = preyPerWeek.toFixed(0) + " g";
+      document.getElementById("preyFeeding").innerText = preyPerFeeding.toFixed(0) + " g";
+      document.getElementById("feedingFreq").innerText = feedingFreq + " × per week";
+
+      document.getElementById("resultsSection").style.display = "block";
+    }
+  </script>
+
 </body>
 </html>
