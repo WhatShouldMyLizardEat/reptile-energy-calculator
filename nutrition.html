@@ -2,40 +2,221 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Reptile Nutrient Calculator</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Komodo Dragon Nutrition Calculator</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    header.hero {
+      width: 100%;
+      height: 260px;
+      background-image: url("header.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    nav {
+      background: #2c3e50;
+      padding: 12px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      color: #2c3e50;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select, button {
+      padding: 8px;
+      font-size: 16px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    button {
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    table {
+      margin-top: 25px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+
+    th {
+      background-color: #2c3e50;
+      color: white;
+      text-align: left;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      margin: 40px 0;
+      color: #555;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
+
 <body>
+
+<header class="hero"></header>
 
 <nav>
   <a href="index.html">Energy Calculator</a> |
-  <a href="nutrition.html">Nutrient Calculator</a>
+  <a href="nutrition.html">Komodo Nutrition</a>
 </nav>
 
-<h1>Nutrient Composition Calculator</h1>
+<div class="container">
+  <h1>Komodo Dragon Nutrition Calculator</h1>
+  <p>
+    Estimate macronutrient intake and calcium:phosphorus (Ca:P) ratio
+    for <em>Varanus komodoensis</em> based on weekly prey intake.
+  </p>
 
-<label>Prey type:</label><br>
-<select id="prey">
-  <option value="rat">Whole rat</option>
-  <option value="mouse">Whole mouse</option>
-  <option value="chicken">Chicken meat</option>
-  <option value="fish">Whole fish</option>
-</select><br><br>
+  <label>Body weight (kg):</label><br>
+  <input type="number" id="weight" step="0.1"><br><br>
 
-<label>Amount fed (grams):</label><br>
-<input type="number" id="amount" step="1"><br><br>
+  <label>Prey type:</label><br>
+  <select id="prey">
+    <option value="rat">Whole rat</option>
+    <option value="chicken">Whole chicken</option>
+    <option value="goat">Goat meat (with bone)</option>
+    <option value="deer">Deer meat (with bone)</option>
+  </select><br><br>
 
-<button onclick="calculateNutrients()">Calculate</button>
+  <label>Total prey intake per week (grams):</label><br>
+  <input type="number" id="intake" step="50"><br><br>
 
-<div id="nutrientResults" style="display:none;">
-  <h2>Results</h2>
-  <p>Protein: <span id="protein"></span> g</p>
-  <p>Fat: <span id="fat"></span> g</p>
-  <p>Calcium: <span id="calcium"></span> mg</p>
-  <p>Phosphorus: <span id="phosphorus"></span> mg</p>
-  <p><strong>Ca:P ratio:</strong> <span id="cap"></span></p>
+  <button onclick="calculateNutrition()">Calculate Nutrition</button>
+
+  <div id="results" style="display:none;">
+    <h2>Estimated Weekly Nutrient Intake</h2>
+
+    <table>
+      <tr>
+        <th>Nutrient</th>
+        <th>Amount</th>
+      </tr>
+      <tr>
+        <td>Protein</td>
+        <td id="protein"></td>
+      </tr>
+      <tr>
+        <td>Fat</td>
+        <td id="fat"></td>
+      </tr>
+      <tr>
+        <td>Calcium</td>
+        <td id="calcium"></td>
+      </tr>
+      <tr>
+        <td>Phosphorus</td>
+        <td id="phosphorus"></td>
+      </tr>
+      <tr>
+        <td><strong>Ca : P Ratio</strong></td>
+        <td id="capRatio"></td>
+      </tr>
+    </table>
+
+    <p class="note" id="capNote"></p>
+  </div>
 </div>
 
-<script src="nutrition.js"></script>
+<div class="container">
+  <h2>Interpretation</h2>
+  <ul>
+    <li>Ideal Ca:P ratio for large varanids ≈ <strong>1.5–2 : 1</strong></li>
+    <li>Low ratios may increase risk of metabolic bone disease</li>
+    <li>Whole prey and bone inclusion strongly affect mineral balance</li>
+  </ul>
+</div>
+
+<footer>
+  Komodo Dragon Nutrition Calculator<br>
+  Developed by Abdul Fattah
+</footer>
+
+<script>
+function calculateNutrition() {
+
+  const intake = parseFloat(document.getElementById("intake").value);
+  const prey = document.getElementById("prey").value;
+
+  if (!intake || intake <= 0) {
+    alert("Please enter a valid weekly intake.");
+    return;
+  }
+
+  // Nutrient values per gram (approximate, whole prey)
+  const nutrientData = {
+    rat:     { protein: 0.18, fat: 0.15, calcium: 15, phosphorus: 20 },
+    chicken: { protein: 0.20, fat: 0.10, calcium: 12, phosphorus: 18 },
+    goat:    { protein: 0.22, fat: 0.08, calcium: 25, phosphorus: 20 },
+    deer:    { protein: 0.23, fat: 0.06, calcium: 28, phosphorus: 22 }
+  };
+
+  const n = nutrientData[prey];
+
+  const protein = intake * n.protein;
+  const fat = intake * n.fat;
+  const calcium = intake * n.calcium;
+  const phosphorus = intake * n.phosphorus;
+  const capRatio = calcium / phosphorus;
+
+  document.getElementById("protein").innerText = protein.toFixed(0) + " g";
+  document.getElementById("fat").innerText = fat.toFixed(0) + " g";
+  document.getElementById("calcium").innerText = calcium.toFixed(0) + " mg";
+  document.getElementById("phosphorus").innerText = phosphorus.toFixed(0) + " mg";
+  document.getElementById("capRatio").innerText = capRatio.toFixed(2) + " : 1";
+
+  let note;
+  if (capRatio < 1.2) {
+    note = "⚠️ Ca:P ratio is LOW — consider increasing bone or calcium-rich prey.";
+  } else if (capRatio > 2.5) {
+    note = "ℹ️ Ca:P ratio is HIGH — usually safe but monitor mineral balance.";
+  } else {
+    note = "✅ Ca:P ratio is within the recommended range for Komodo dragons.";
+  }
+
+  document.getElementById("capNote").innerText = note;
+  document.getElementById("results").style.display = "block";
+}
+</script>
+
 </body>
 </html>
