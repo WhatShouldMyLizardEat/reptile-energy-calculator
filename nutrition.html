@@ -18,8 +18,8 @@
 <div class="container">
   <h1>Komodo Dragon Nutrition Calculator</h1>
   <p>
-    Estimate macronutrient intake and calcium:phosphorus (Ca:P) ratio
-    for <em>Varanus komodoensis</em>.
+    Estimate macronutrient intake, energy intake, and calcium:phosphorus (Ca:P) ratio
+    for <em>Varanus komodoensis</em> based on weekly prey intake.
   </p>
 
   <label>Prey type:</label><br>
@@ -30,7 +30,7 @@
     <option value="deer">Deer meat (with bone)</option>
   </select><br><br>
 
-  <label>Weekly feeding plan:</label><br>
+  <label>Weekly feeding plan (g prey per week):</label><br>
   <table>
     <thead>
       <tr>
@@ -39,59 +39,31 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Week 1</td>
-        <td><input type="number" class="weekIntake" value="0"></td>
-      </tr>
-      <tr>
-        <td>Week 2</td>
-        <td><input type="number" class="weekIntake" value="0"></td>
-      </tr>
-      <tr>
-        <td>Week 3</td>
-        <td><input type="number" class="weekIntake" value="0"></td>
-      </tr>
-      <tr>
-        <td>Week 4</td>
-        <td><input type="number" class="weekIntake" value="0"></td>
-      </tr>
+      <tr><td>Week 1</td><td><input type="number" class="weekIntake" value="0"></td></tr>
+      <tr><td>Week 2</td><td><input type="number" class="weekIntake" value="0"></td></tr>
+      <tr><td>Week 3</td><td><input type="number" class="weekIntake" value="0"></td></tr>
+      <tr><td>Week 4</td><td><input type="number" class="weekIntake" value="0"></td></tr>
     </tbody>
   </table>
 
-  <button onclick="calculateNutrition()">Calculate Final Nutrient Intake</button>
+  <button onclick="calculateNutrition()">Calculate Final Nutrient & Energy Intake</button>
 
   <div id="resultsSection" style="display:none;">
-    <h2>4-Week Nutrient Summary</h2>
+    <h2>4-Week Nutrient + Energy Summary</h2>
 
     <table>
-      <tr>
-        <th>Nutrient</th>
-        <th>Total (4 weeks)</th>
-      </tr>
-      <tr>
-        <td>Protein</td>
-        <td id="protein"></td>
-      </tr>
-      <tr>
-        <td>Fat</td>
-        <td id="fat"></td>
-      </tr>
-      <tr>
-        <td>Calcium</td>
-        <td id="calcium"></td>
-      </tr>
-      <tr>
-        <td>Phosphorus</td>
-        <td id="phosphorus"></td>
-      </tr>
-      <tr>
-        <td><strong>Ca : P ratio</strong></td>
-        <td id="capRatio"></td>
-      </tr>
+      <tr><th>Category</th><th>Amount</th></tr>
+      <tr><td>Energy intake (per week)</td><td id="energyIntake"></td></tr>
+      <tr><td>Protein</td><td id="protein"></td></tr>
+      <tr><td>Fat</td><td id="fat"></td></tr>
+      <tr><td>Calcium</td><td id="calcium"></td></tr>
+      <tr><td>Phosphorus</td><td id="phosphorus"></td></tr>
+      <tr><td><strong>Ca : P ratio</strong></td><td id="capRatio"></td></tr>
     </table>
 
     <p id="capNote" style="margin-top:15px;font-weight:bold;"></p>
   </div>
+
 </div>
 
 <footer>
