@@ -21,6 +21,31 @@ function calculateNutrition() {
     deer:    { protein: 0.23, fat: 0.06, calcium: 28, phosphorus: 22, energy: 1.9 }
   };
 
+  function applyPreset() {
+  const preset = document.getElementById("preset").value;
+  const inputs = document.querySelectorAll(".weekIntake");
+
+  let values = [0, 0, 0, 0];
+
+  if (preset === "juvenile") {
+    // Smaller but frequent feeding
+    values = [1500, 1500, 1500, 1500]; // 6 kg / month
+  }
+
+  if (preset === "subadult") {
+    values = [3000, 0, 3000, 0]; // 6 kg / month, biweekly
+  }
+
+  if (preset === "adult") {
+    values = [4000, 0, 0, 4000]; // 8 kg / month, low frequency
+  }
+
+  inputs.forEach((input, index) => {
+    input.value = values[index];
+  });
+}
+
+  
   const n = nutrientData[prey];
 
   const energyIntake = totalIntake * n.energy;
