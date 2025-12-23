@@ -16,11 +16,15 @@
 </nav>
 
 <div class="container">
+
   <h1>Komodo Dragon Nutrition Calculator</h1>
   <p>
-    Estimate macronutrient intake, energy intake, and calcium:phosphorus (Ca:P) ratio
-    for <em>Varanus komodoensis</em> based on weekly prey intake.
+    Estimate weekly energy, macronutrient intake, and calcium:phosphorus (Ca:P) ratio
+    for <em>Varanus komodoensis</em>.
   </p>
+
+  <label>Komodo dragon body weight (kg):</label><br>
+  <input type="number" id="bodyWeight" step="0.1"><br><br>
 
   <label>Prey type:</label><br>
   <select id="prey">
@@ -30,18 +34,7 @@
     <option value="deer">Deer meat (with bone)</option>
   </select><br><br>
 
-  <label>Komodo Dragon Life Stage (Preset):</label><br>
-  <select id="preset">
-    <option value="">-- Select preset --</option>
-    <option value="juvenile">Juvenile</option>
-    <option value="subadult">Subadult</option>
-    <option value="adult">Adult</option>
-  </select><br><br>
-
-  <label>Komodo dragon body weight (kg):</label><br>
-  <input type="number" id="bodyWeight" step="0.1"><br><br>
-
-  <label>Weekly feeding plan (g prey per week):</label><br>
+  <label>Weekly feeding plan (g prey per week):</label>
 
   <table>
     <thead>
@@ -58,26 +51,32 @@
     </tbody>
   </table>
 
-  <button onclick="calculateNutrition()">Calculate Final Nutrient & Energy Intake</button>
+  <button onclick="calculateNutrition()">
+    Calculate Final Nutrient & Energy Intake
+  </button>
 
+  <!-- RESULTS -->
   <div id="resultsSection" style="display:none;">
-    <h2>4-Week Nutrient + Energy Summary</h2>
+
+    <h2>4-Week Nutrient & Energy Summary</h2>
 
     <table>
       <tr><th>Category</th><th>Amount</th></tr>
       <tr><td>Energy intake (per week)</td><td id="energyIntake"></td></tr>
+      <tr><td>Estimated energy requirement</td><td id="energyReq"></td></tr>
+      <tr><td><strong>Energy balance</strong></td><td id="energyBalance"></td></tr>
       <tr><td>Protein</td><td id="protein"></td></tr>
       <tr><td>Fat</td><td id="fat"></td></tr>
       <tr><td>Calcium</td><td id="calcium"></td></tr>
       <tr><td>Phosphorus</td><td id="phosphorus"></td></tr>
       <tr><td><strong>Ca : P ratio</strong></td><td id="capRatio"></td></tr>
-      <tr><td>Estimated energy requirement (per week)</td><td id="energyReq"></td></tr>
-      <tr><td><strong>Energy balance</strong></td><td id="energyBalance"></td></tr>
     </table>
 
     <p id="energyNote"></p>
-    <p id="capNote" style="margin-top:15px;font-weight:bold;"></p>
+    <p id="capNote" style="font-weight:bold;"></p>
+
   </div>
+
 </div>
 
 <footer>
