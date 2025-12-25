@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 /* ===== GLOBAL PAGE ===== */
 body {
   font-family: Arial, sans-serif;
@@ -15,6 +17,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
 /* APPEND the following rules to your existing style.css to style the nav buttons */
 
 /* Navigation container */
@@ -26,36 +29,109 @@ body {
   align-items: center;
 }
 
-/* Button-like links */
+/* Button-like links (Pixel Art Style) */
 .nav-btn {
   display: inline-block;
   padding: 0.5rem 0.9rem;
-  border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.07);
-  background: linear-gradient(180deg, #ffffff, #f6f9ff);
-  color: #1f2d3d;
+  margin: 4px;
+  /* Space for outer shadows */
   text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(14,30,60,0.06);
-  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+  font-weight: 400;
+  /* Pixel fonts often don't need bold */
+  font-family: 'VT323', monospace;
+  /* Fallback to monospace */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: #4b8ef8;
+  /* Main body color */
+  color: #fff;
+  position: relative;
+  border: none;
+  border-radius: 0;
+
+  /* Pixel Art Border & 3D Effect using Box Shadows
+     1. Inner Light (Top/Left)
+     2. Inner Dark (Bottom/Right)
+     3. Outer Border (Black) simulating stepped corners
+  */
+  box-shadow:
+    /* Inner Highlight */
+    inset 3px 3px 0px 0px #8ec3ff,
+    /* Inner Shadow */
+    inset -3px -3px 0px 0px #1a428a,
+    /* Top Black */
+    0px -3px 0px 0px #000,
+    /* Bottom Black */
+    0px 3px 0px 0px #000,
+    /* Left Black */
+    -3px 0px 0px 0px #000,
+    /* Right Black */
+    3px 0px 0px 0px #000,
+    /* Corner fillers (if needed for squared look, or omit for stepped) */
+    /* Stepped effect usually created by NOT having corners. 
+       The above creates a solid rect with 3px border. 
+       To make it stepped, we would need more complex shadows.
+       For now, a solid thick border with inset depth is "pixel style". 
+    */
+    /* Let's try a true stepped pixel border technique */
+    /* Top-Left */
+    -3px -3px 0px 0px #000,
+    /* Top-Right */
+    3px -3px 0px 0px #000,
+    /* Bottom-Right */
+    3px 3px 0px 0px #000,
+    /* Bottom-Left */
+    -3px 3px 0px 0px #000;
+
+  /* Actually a simpler "NES css" approach better matches standard pixel buttons: */
+  /* 4px borders */
+}
+
+/* Redefining strictly for the "clean" pixel look similar to the image idea */
+.nav-btn {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  background-color: #2ce8f5;
+  /* Cyan from typical Start buttons */
+  color: #000;
+  border: 4px solid #000;
+  position: relative;
+  box-shadow:
+    inset 4px 4px 0px 0px #bcfaff,
+    /* Highlight */
+    inset -4px -4px 0px 0px #0099aa;
+  /* Shadow */
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 /* Hover / focus */
 .nav-btn:hover,
 .nav-btn:focus {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(14,30,60,0.12);
-  background: linear-gradient(180deg, #ffffff, #eaf2ff);
+  transform: translateY(-2px);
+  background-color: #6fffff;
   outline: none;
 }
 
-/* Active/current page */
+.nav-btn:active {
+  transform: translateY(2px);
+  transition: all 0.05s ease;
+  /* Fast response for click */
+  box-shadow:
+    inset 4px 4px 0px 0px #0099aa,
+    /* Inverted Shadow */
+    inset -4px -4px 0px 0px #bcfaff;
+  /* Inverted Highlight */
+}
+
+/* Active/current page - make it distinct, maybe Orange or just Darker Cyan */
 .nav-btn.active,
 .nav-btn[aria-current="page"] {
-  background: linear-gradient(180deg,#4b8ef8,#2b63d6);
-  color: #fff;
-  border-color: rgba(0,0,0,0.08);
-  box-shadow: 0 10px 26px rgba(43,99,214,0.18);
+  background-color: #f5b72c;
+  /* Orange active state */
+  box-shadow:
+    inset 4px 4px 0px 0px #ffe5a0,
+    inset -4px -4px 0px 0px #aa7700;
 }
 
 /* Small screens */
@@ -64,8 +140,17 @@ body {
     gap: 0.4rem;
     padding: 0 0.5rem;
   }
-  .nav-btn { padding: 0.45rem 0.6rem; font-size: 0.95rem; }
+
+  .nav-btn {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-width: 3px;
+    box-shadow:
+      inset 3px 3px 0px 0px #bcfaff,
+      inset -3px -3px 0px 0px #0099aa;
+  }
 }
+
 /* ===== MAIN CONTENT WRAPPER ===== */
 .container {
   max-width: 900px;
@@ -149,4 +234,3 @@ footer {
   font-size: 0.9em;
   color: #555;
 }
-
