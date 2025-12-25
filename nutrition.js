@@ -21,10 +21,10 @@ function calculateNutrition() {
 
   // Average nutrient + energy values per gram of prey
   const nutrientData = {
-    rat:     { protein: 0.18, fat: 0.15, calcium: 15, phosphorus: 20, energy: 2.5 },
+    rat: { protein: 0.18, fat: 0.15, calcium: 15, phosphorus: 20, energy: 2.5 },
     chicken: { protein: 0.20, fat: 0.10, calcium: 12, phosphorus: 18, energy: 1.6 },
-    goat:    { protein: 0.22, fat: 0.08, calcium: 25, phosphorus: 20, energy: 2.0 },
-    deer:    { protein: 0.23, fat: 0.06, calcium: 28, phosphorus: 22, energy: 1.9 }
+    goat: { protein: 0.22, fat: 0.08, calcium: 25, phosphorus: 20, energy: 2.0 },
+    deer: { protein: 0.23, fat: 0.06, calcium: 28, phosphorus: 22, energy: 1.9 }
   };
 
   const n = nutrientData[prey];

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,19 +9,19 @@
   <title>Reptile Energy Calculator</title>
 
   <!-- FAVICONS (put favicon.ico at site root /favicon.ico for maximum compatibility) -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
   <!-- Optional higher-resolution / platform icons (place these at site root or adjust paths) -->
-  <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png"> <!-- for iOS home screen -->
-  <link rel="manifest" href="/site.webmanifest"> <!-- optional web app manifest -->
+  <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+  <link rel="manifest" href="site.webmanifest"> <!-- optional web app manifest -->
   <meta name="theme-color" content="#ffffff"> <!-- used by some browsers for UI tint -->
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- HERO IMAGE -->
@@ -49,7 +50,11 @@
     <label>Reptile group:</label><br>
     <select id="group">
       <option value="monitor">Monitor lizard</option>
-      <option value="snake">Snake</option>
+      <option value="komodo">Komodo dragon</option>
+      <option value="large_lizard">Other large lizard</option>
+      <option value="ambush_snake">Ambush snake</option>
+      <option value="active_snake">Active snake</option>
+      <option value="large_snake">Large snake</option>
     </select><br><br>
 
     <label>Prey type:</label><br>
@@ -121,66 +126,22 @@
   </footer>
 
   <!-- JAVASCRIPT -->
-  <script>
-    function calculateEnergy() {
-
-      const weight = parseFloat(document.getElementById("weight").value);
-      const temperature = parseFloat(document.getElementById("temperature").value);
-      const group = document.getElementById("group").value;
-      const prey = document.getElementById("prey").value;
-
-      if (!weight || weight <= 0) {
-        alert("Please enter a valid body weight.");
-        return;
-      }
-
-      // Base metabolic estimate
-      let baseEnergy = (group === "monitor")
-        ? 40 * Math.pow(weight, 0.75)
-        : 30 * Math.pow(weight, 0.75);
-
-      // Temperature correction (Q10 = 2, reference 30°C)
-      const tempFactor = Math.pow(2, (temperature - 30) / 10);
-      const kcalDay = baseEnergy * tempFactor;
-      const kcalWeek = kcalDay * 7;
-
-      // Prey energy density (kcal/g)
-      const preyEnergy = {
-        rat: 2.5,
-        mouse: 2.3,
-        chicken: 1.6,
-        fish: 1.4
-      };
-
-      const preyPerWeek = kcalWeek / preyEnergy[prey];
-      const feedingFreq = (group === "monitor") ? 2 : 1;
-      const preyPerFeeding = preyPerWeek / feedingFreq;
-
-      document.getElementById("kcalDay").innerText = kcalDay.toFixed(0) + " kcal";
-      document.getElementById("kcalWeek").innerText = kcalWeek.toFixed(0) + " kcal";
-      document.getElementById("preyWeek").innerText = preyPerWeek.toFixed(0) + " g";
-      document.getElementById("preyFeeding").innerText = preyPerFeeding.toFixed(0) + " g";
-      document.getElementById("feedingFreq").innerText = feedingFreq + " × per week";
-
-      document.getElementById("resultsSection").style.display = "block";
-    }
-  </script>
+  <script src="script.js"></script>
 
   <!-- Small script to mark the current nav button as active -->
   <script>
-    (function(){
+    (function () {
       // Compare link href to page filename and add .active
       const current = location.pathname.split('/').pop() || 'index.html';
-      document.querySelectorAll('.nav-btn').forEach(a=>{
+      document.querySelectorAll('.nav-btn').forEach(a => {
         if (a.getAttribute('href') === current) {
           a.classList.add('active');
-          a.setAttribute('aria-current','page');
+          a.setAttribute('aria-current', 'page');
         }
       });
     })();
   </script>
 
 </body>
+
 </html>
-
-
