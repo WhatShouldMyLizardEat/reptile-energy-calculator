@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,125 +9,166 @@
   <title>Komodo Dragon Nutrition Calculator</title>
 
   <!-- FAVICONS (put favicon.ico at site root /favicon.ico for maximum compatibility) -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
   <!-- Optional higher-resolution / platform icons (place these at site root or adjust paths) -->
-  <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png"> <!-- for iOS home screen -->
-  <link rel="manifest" href="/site.webmanifest"> <!-- optional web app manifest -->
+  <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+  <link rel="manifest" href="site.webmanifest"> <!-- optional web app manifest -->
   <meta name="theme-color" content="#ffffff"> <!-- used by some browsers for UI tint -->
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="hero"></header>
+  <header class="hero"></header>
 
-<nav class="main-nav">
-  <a href="index.html" class="nav-btn">Energy Calculator</a>
-  <a href="nutrition.html" class="nav-btn">Komodo Nutrition</a>
-</nav>
+  <nav class="main-nav">
+    <a href="index.html" class="nav-btn">Energy Calculator</a>
+    <a href="nutrition.html" class="nav-btn">Komodo Nutrition</a>
+  </nav>
 
-<div class="container">
+  <div class="container">
 
-  <h1>Komodo Dragon Nutrition Calculator</h1>
-  <p>
-    Estimate weekly energy, macronutrient intake, and calcium:phosphorus (Ca:P) ratio
-    for <em>Varanus komodoensis</em>.
-  </p>
+    <h1>Komodo Dragon Nutrition Calculator</h1>
+    <p>
+      Estimate weekly energy, macronutrient intake, and calcium:phosphorus (Ca:P) ratio
+      for <em>Varanus komodoensis</em>.
+    </p>
 
-  <label>Komodo dragon body weight (kg):</label><br>
-  <input type="number" id="bodyWeight" step="0.1"><br><br>
+    <label>Komodo dragon body weight (kg):</label><br>
+    <input type="number" id="bodyWeight" step="0.1"><br><br>
 
-  <label>Prey type:</label><br>
-  <select id="prey">
-    <option value="rat">Whole rat</option>
-    <option value="chicken">Whole chicken</option>
-    <option value="goat">Goat meat (with bone)</option>
-    <option value="deer">Deer meat (with bone)</option>
-  </select><br><br>
- <label>Komodo Dragon Life Stage (Preset):</label><br>
- <select id="preset" onchange="applyPreset()">
-  <option value="">-- Select preset --</option>
-  <option value="juvenile">Juvenile</option>
-  <option value="subadult">Subadult</option>
-  <option value="adult">Adult</option>
- </select>
+    <label>Prey type:</label><br>
+    <select id="prey">
+      <option value="rat">Whole rat</option>
+      <option value="chicken">Whole chicken</option>
+      <option value="goat">Goat meat (with bone)</option>
+      <option value="deer">Deer meat (with bone)</option>
+    </select><br><br>
+    <label>Komodo Dragon Life Stage (Preset):</label><br>
+    <select id="preset" onchange="applyPreset()">
+      <option value="">-- Select preset --</option>
+      <option value="juvenile">Juvenile</option>
+      <option value="subadult">Subadult</option>
+      <option value="adult">Adult</option>
+    </select>
 
-<p style="font-size:0.9em;color:#555;">
-Presets auto-fill a typical 4-week feeding plan. You may adjust values afterward.
-</p>
+    <p style="font-size:0.9em;color:#555;">
+      Presets auto-fill a typical 4-week feeding plan. You may adjust values afterward.
+    </p>
 
-   <label>Weekly feeding plan (g prey per week):</label><br>
-  <p style="font-style:italic; color:#555; margin-top:0.25em;">
-    The number provided is merely an example intended to illustrate feeding frequency based on the Komodo dragon’s developmental stage.
-  </p>
-  
-  <table>
-    <thead>
-      <tr>
-        <th>Week</th>
-        <th>Prey offered (g)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Week 1</td><td><input type="number" class="weekIntake" value="0" autocomplete="off"></td></tr>
-      <tr><td>Week 2</td><td><input type="number" class="weekIntake" value="0" autocomplete="off"></td></tr>
-      <tr><td>Week 3</td><td><input type="number" class="weekIntake" value="0" autocomplete="off"></td></tr>
-      <tr><td>Week 4</td><td><input type="number" class="weekIntake" value="0" autocomplete="off"></td></tr>
-    </tbody>
-  </table>
-
-  <button onclick="calculateNutrition()">
-    Calculate Final Nutrient & Energy Intake
-  </button>
-
-  <!-- RESULTS -->
-  <div id="resultsSection" style="display:none;">
-
-    <h2>4-Week Nutrient & Energy Summary</h2>
+    <label>Weekly feeding plan (g prey per week):</label><br>
+    <p style="font-style:italic; color:#555; margin-top:0.25em;">
+      The number provided is merely an example intended to illustrate feeding frequency based on the Komodo dragon’s
+      developmental stage.
+    </p>
 
     <table>
-      <tr><th>Category</th><th>Amount</th></tr>
-      <tr><td>Energy intake (per week)</td><td id="energyIntake"></td></tr>
-      <tr><td>Estimated energy requirement</td><td id="energyReq"></td></tr>
-      <tr><td><strong>Energy balance</strong></td><td id="energyBalance"></td></tr>
-      <tr><td>Protein</td><td id="protein"></td></tr>
-      <tr><td>Fat</td><td id="fat"></td></tr>
-      <tr><td>Calcium</td><td id="calcium"></td></tr>
-      <tr><td>Phosphorus</td><td id="phosphorus"></td></tr>
-      <tr><td><strong>Ca : P ratio</strong></td><td id="capRatio"></td></tr>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Prey offered (g)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Week 1</td>
+          <td><input type="number" class="weekIntake" value="0" autocomplete="off"></td>
+        </tr>
+        <tr>
+          <td>Week 2</td>
+          <td><input type="number" class="weekIntake" value="0" autocomplete="off"></td>
+        </tr>
+        <tr>
+          <td>Week 3</td>
+          <td><input type="number" class="weekIntake" value="0" autocomplete="off"></td>
+        </tr>
+        <tr>
+          <td>Week 4</td>
+          <td><input type="number" class="weekIntake" value="0" autocomplete="off"></td>
+        </tr>
+      </tbody>
     </table>
 
-    <p id="energyNote"></p>
-    <p id="capNote" style="font-weight:bold;"></p>
+    <button onclick="calculateNutrition()">
+      Calculate Final Nutrient & Energy Intake
+    </button>
+
+    <!-- RESULTS -->
+    <div id="resultsSection" style="display:none;">
+
+      <h2>4-Week Nutrient & Energy Summary</h2>
+
+      <table>
+        <tr>
+          <th>Category</th>
+          <th>Amount</th>
+        </tr>
+        <tr>
+          <td>Energy intake (per week)</td>
+          <td id="energyIntake"></td>
+        </tr>
+        <tr>
+          <td>Estimated energy requirement</td>
+          <td id="energyReq"></td>
+        </tr>
+        <tr>
+          <td><strong>Energy balance</strong></td>
+          <td id="energyBalance"></td>
+        </tr>
+        <tr>
+          <td>Protein</td>
+          <td id="protein"></td>
+        </tr>
+        <tr>
+          <td>Fat</td>
+          <td id="fat"></td>
+        </tr>
+        <tr>
+          <td>Calcium</td>
+          <td id="calcium"></td>
+        </tr>
+        <tr>
+          <td>Phosphorus</td>
+          <td id="phosphorus"></td>
+        </tr>
+        <tr>
+          <td><strong>Ca : P ratio</strong></td>
+          <td id="capRatio"></td>
+        </tr>
+      </table>
+
+      <p id="energyNote"></p>
+      <p id="capNote" style="font-weight:bold;"></p>
+
+    </div>
 
   </div>
 
-</div>
+  <footer>
+    Komodo Dragon Nutrition Tool<br>
+    Developed by Abdul Fattah
+  </footer>
 
-<footer>
-  Komodo Dragon Nutrition Tool<br>
-  Developed by Abdul Fattah
-</footer>
+  <script src="nutrition.js"></script>
 
-<script src="nutrition.js"></script>
-
-<!-- Small script to mark the current nav button as active -->
-<script>
-  (function(){
-    const current = location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-btn').forEach(a=>{
-      if (a.getAttribute('href') === current) {
-        a.classList.add('active');
-        a.setAttribute('aria-current','page');
-      }
-    });
-  })();
-</script>
+  <!-- Small script to mark the current nav button as active -->
+  <script>
+    (function () {
+      const current = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-btn').forEach(a => {
+        if (a.getAttribute('href') === current) {
+          a.classList.add('active');
+          a.setAttribute('aria-current', 'page');
+        }
+      });
+    })();
+  </script>
 
 </body>
+
 </html>
