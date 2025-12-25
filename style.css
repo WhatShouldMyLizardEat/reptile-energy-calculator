@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-/* ===== GLOBAL PAGE ===== */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', 'Roboto', sans-serif;
   margin: 0;
-  background-color: #ffffff;
-  color: #222;
+  background-color: #f4f7f6;
+  color: #333;
+  line-height: 1.6;
 }
 
 /* ===== HEADER IMAGE ===== */
@@ -16,96 +20,40 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* APPEND the following rules to your existing style.css to style the nav buttons */
-
-/* Navigation container */
+/* ===== NAVIGATION ===== */
 .main-nav {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.8rem;
   justify-content: center;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-/* Button-like links (Pixel Art Style) */
 .nav-btn {
   display: inline-block;
-  padding: 0.5rem 0.9rem;
+  padding: 0.6rem 1.2rem;
   margin: 4px;
-  /* Space for outer shadows */
   text-decoration: none;
   font-weight: 400;
-  /* Pixel fonts often don't need bold */
   font-family: 'VT323', monospace;
-  /* Fallback to monospace */
+  /* Keep retro font for nav as trademark */
+  font-size: 1.3rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background-color: #4b8ef8;
-  /* Main body color */
-  color: #fff;
-  position: relative;
-  border: none;
-  border-radius: 0;
-
-  /* Pixel Art Border & 3D Effect using Box Shadows
-     1. Inner Light (Top/Left)
-     2. Inner Dark (Bottom/Right)
-     3. Outer Border (Black) simulating stepped corners
-  */
-  box-shadow:
-    /* Inner Highlight */
-    inset 3px 3px 0px 0px #8ec3ff,
-    /* Inner Shadow */
-    inset -3px -3px 0px 0px #1a428a,
-    /* Top Black */
-    0px -3px 0px 0px #000,
-    /* Bottom Black */
-    0px 3px 0px 0px #000,
-    /* Left Black */
-    -3px 0px 0px 0px #000,
-    /* Right Black */
-    3px 0px 0px 0px #000,
-    /* Corner fillers (if needed for squared look, or omit for stepped) */
-    /* Stepped effect usually created by NOT having corners. 
-       The above creates a solid rect with 3px border. 
-       To make it stepped, we would need more complex shadows.
-       For now, a solid thick border with inset depth is "pixel style". 
-    */
-    /* Let's try a true stepped pixel border technique */
-    /* Top-Left */
-    -3px -3px 0px 0px #000,
-    /* Top-Right */
-    3px -3px 0px 0px #000,
-    /* Bottom-Right */
-    3px 3px 0px 0px #000,
-    /* Bottom-Left */
-    -3px 3px 0px 0px #000;
-
-  /* Actually a simpler "NES css" approach better matches standard pixel buttons: */
-  /* 4px borders */
-}
-
-/* Redefining strictly for the "clean" pixel look similar to the image idea */
-.nav-btn {
-  font-family: 'VT323', monospace;
-  font-size: 1.2rem;
-  padding: 10px 20px;
   background-color: #2ce8f5;
-  /* Cyan from typical Start buttons */
   color: #000;
   border: 4px solid #000;
   position: relative;
   box-shadow:
     inset 4px 4px 0px 0px #bcfaff,
-    /* Highlight */
     inset -4px -4px 0px 0px #0099aa;
-  /* Shadow */
-  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.1s ease, background-color 0.2s;
 }
 
-/* Hover / focus */
 .nav-btn:hover,
 .nav-btn:focus {
   transform: translateY(-2px);
@@ -115,122 +63,241 @@ body {
 
 .nav-btn:active {
   transform: translateY(2px);
-  transition: all 0.05s ease;
-  /* Fast response for click */
   box-shadow:
     inset 4px 4px 0px 0px #0099aa,
-    /* Inverted Shadow */
     inset -4px -4px 0px 0px #bcfaff;
-  /* Inverted Highlight */
 }
 
-/* Active/current page - make it distinct, maybe Orange or just Darker Cyan */
 .nav-btn.active,
 .nav-btn[aria-current="page"] {
   background-color: #f5b72c;
-  /* Orange active state */
   box-shadow:
     inset 4px 4px 0px 0px #ffe5a0,
     inset -4px -4px 0px 0px #aa7700;
-}
-
-/* Small screens */
-@media (max-width:560px) {
-  .main-nav {
-    gap: 0.4rem;
-    padding: 0 0.5rem;
-  }
-
-  .nav-btn {
-    padding: 8px 12px;
-    font-size: 1rem;
-    border-width: 3px;
-    box-shadow:
-      inset 3px 3px 0px 0px #bcfaff,
-      inset -3px -3px 0px 0px #0099aa;
-  }
 }
 
 /* ===== MAIN CONTENT WRAPPER ===== */
 .container {
   max-width: 900px;
   margin: 40px auto;
-  padding: 0 20px;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* ===== HEADINGS ===== */
 h1 {
-  color: #2c3e50;
+  color: #1f2937;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  color: #4b5563;
+  margin-bottom: 1.5em;
 }
 
 /* ===== FORM ===== */
 label {
-  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
-input,
-select,
-button {
-  padding: 8px;
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px;
   font-size: 16px;
-  margin-top: 5px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 20px;
+  font-family: inherit;
 }
 
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background-color: #fff;
+}
+
+/* Calculate Button */
 button {
-  margin-top: 15px;
+  display: inline-block;
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #1f2937;
+  /* Dark slate */
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-top: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+button:hover {
+  background-color: #111827;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(1px);
 }
 
 /* ===== RESULTS ===== */
+#resultsSection {
+  margin-top: 40px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 #result {
-  margin-top: 20px;
-  color: #006400;
+  color: #059669;
+  font-weight: 600;
 }
 
 /* ===== TABLE ===== */
 table {
-  margin-top: 25px;
-  border-collapse: collapse;
   width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
 }
 
 th,
 td {
-  border: 1px solid #ddd;
-  padding: 12px;
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 th {
-  background-color: #2c3e50;
-  color: white;
-  text-align: left;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
 }
 
-tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+tr:last-child td {
+  border-bottom: none;
 }
 
 tbody tr:hover {
-  background-color: #e6f2ff;
+  background-color: #f9fafb;
+}
+
+/* Result values emphasizing */
+td[id] {
+  font-family: 'Roboto', monospace;
+  /* Monospaced for numbers alignment can be nice, or just Roboto */
+  font-weight: 500;
+  color: #111827;
 }
 
 /* ===== INFO SECTIONS ===== */
 .info {
-  margin: 40px auto;
-  padding: 20px;
-  max-width: 900px;
+  margin-top: 40px;
+  /* Space between main card and info cards */
 }
 
+/* Disclaimer Styling */
 .disclaimer {
-  background-color: #f5f5f5;
-  border-left: 4px solid #999;
+  background-color: #fffbeb;
+  border-left: 5px solid #f59e0b;
+  color: #92400e;
+}
+
+.disclaimer h2 {
+  color: #92400e;
+  border-color: #fcd34d;
 }
 
 /* ===== FOOTER ===== */
 footer {
-  margin: 50px auto;
-  max-width: 900px;
-  padding: 0 20px;
-  font-size: 0.9em;
-  color: #555;
+  margin: 60px auto;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+    margin: 20px 10px;
+    border-radius: 8px;
+  }
+
+  .hero {
+    height: 180px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  /* Adjust buttons for mobile */
+  .nav-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 1.1rem;
+  }
+
+  /* Make table scrollable if needed */
+  #resultsSection {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 100%;
+    /* Let it shrink but not too much */
+    font-size: 0.95rem;
+    /* Slightly smaller text */
+  }
+
+  th,
+  td {
+    padding: 12px 10px;
+  }
 }
