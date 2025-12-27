@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hoofstock Ear Notching Generator</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <img src="header.jpg" alt="Hoofstock Ear Notching Header" class="site-header">
+        <h1>Hoofstock Ear Notching Generator</h1>
+
+        <div class="input-section">
+            <div class="input-row">
+                <label for="internalId">Please Input Your Internal ID Number:</label>
+                <div style="width: 100%;">
+                    <input type="number" id="internalId" value="0" min="0" max="4095">
+                    <div id="idWarning" class="warning-text">Maximum ID is 4095!</div>
+                </div>
+            </div>
+            <div class="input-row">
+                <label for="species">Species:</label>
+                <input type="text" id="species" placeholder="e.g. Red Lechwe">
+            </div>
+            <div style="text-align: center; margin-top: 20px; width: 100%;">
+                <button id="generateBtn" class="action-btn">Generate</button>
+            </div>
+        </div>
+
+        <div id="resultSection" style="display: none;">
+            <div class="ears">
+                <div class="ear">
+                    <h2>Left Ear</h2>
+                    <label><input type="checkbox" value="A"> A (1)</label>
+                    <label><input type="checkbox" value="B"> B (2)</label>
+                    <label><input type="checkbox" value="C"> C (4)</label>
+                    <label><input type="checkbox" value="D"> D (8)</label>
+                    <label><input type="checkbox" value="E"> E (16)</label>
+                    <label><input type="checkbox" value="F"> F (32)</label>
+                </div>
+
+                <div class="ear">
+                    <h2>Right Ear</h2>
+                    <label><input type="checkbox" value="G"> G (64)</label>
+                    <label><input type="checkbox" value="H"> H (128)</label>
+                    <label><input type="checkbox" value="I"> I (256)</label>
+                    <label><input type="checkbox" value="J"> J (512)</label>
+                    <label><input type="checkbox" value="K"> K (1024)</label>
+                    <label><input type="checkbox" value="L"> L (2048)</label>
+                </div>
+            </div>
+
+            <div class="result">
+                <p><strong>Selected Notches:</strong> <span id="selectedNotches">None</span></p>
+            </div>
+
+            <div class="diagram-container">
+                <img src="diagram.png" alt="Ear Notch Diagram" id="earDiagram">
+                <!-- Left Ear Notches (1, 3, 9 positions approximately) -->
+                <div id="marker-A" class="notch-marker" data-notch="A"></div>
+                <div id="marker-B" class="notch-marker" data-notch="B"></div>
+                <div id="marker-C" class="notch-marker" data-notch="C"></div>
+                <div id="marker-D" class="notch-marker" data-notch="D"></div>
+                <div id="marker-E" class="notch-marker" data-notch="E"></div>
+                <div id="marker-F" class="notch-marker" data-notch="F"></div>
+
+                <!-- Right Ear Notches -->
+                <div id="marker-G" class="notch-marker" data-notch="G"></div>
+                <div id="marker-H" class="notch-marker" data-notch="H"></div>
+                <div id="marker-I" class="notch-marker" data-notch="I"></div>
+                <div id="marker-J" class="notch-marker" data-notch="J"></div>
+                <div id="marker-K" class="notch-marker" data-notch="K"></div>
+                <div id="marker-L" class="notch-marker" data-notch="L"></div>
+            </div>
+
+            <div class="print-actions" style="text-align: center; margin-top: 30px;">
+                <button id="printBtn" class="action-btn">Print / Save as PDF</button>
+            </div>
+        </div>
+
+        <div class="back-link" style="text-align: center; margin-top: 30px;">
+            <a href="../index.html" class="action-btn" style="text-decoration: none;">← Back to Main Menu</a>
+        </div>
+
+        <footer class="site-footer">
+            <p>
+                © 2025 Hoof Ear Notch Generator &middot; Developed by Abdul Fattah
+            </p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

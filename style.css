@@ -1,303 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
-* {
-  box-sizing: border-box;
+/* Dot Grid Background */
+.dot-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
 }
 
+.dot-grid__wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.dot-grid__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Base body styling for main menu */
 body {
-  font-family: 'Inter', 'Roboto', sans-serif;
-  margin: 0;
-  background-color: #f4f7f6;
-  color: #333;
-  line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: #0a0a1a;
+    font-family: 'VT323', monospace;
+    color: #ffffff;
 }
 
-/* ===== HEADER IMAGE ===== */
-.hero {
-  width: 100%;
-  height: 260px;
-  background-image: url("header.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-/* ===== NAVIGATION ===== */
-.main-nav {
-  display: flex;
-  gap: 0.8rem;
-  justify-content: center;
-  margin: 1.5rem 0;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.nav-btn {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  margin: 4px;
-  text-decoration: none;
-  font-weight: 400;
-  font-family: 'VT323', monospace;
-  /* Keep retro font for nav as trademark */
-  font-size: 1.3rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  background-color: #2ce8f5;
-  color: #000;
-  border: 4px solid #000;
-  position: relative;
-  box-shadow:
-    inset 4px 4px 0px 0px #bcfaff,
-    inset -4px -4px 0px 0px #0099aa;
-  transition: transform 0.1s ease, background-color 0.2s;
-}
-
-.nav-btn:hover,
-.nav-btn:focus {
-  transform: translateY(-2px);
-  background-color: #6fffff;
-  outline: none;
-}
-
-.nav-btn:active {
-  transform: translateY(2px);
-  box-shadow:
-    inset 4px 4px 0px 0px #0099aa,
-    inset -4px -4px 0px 0px #bcfaff;
-}
-
-.nav-btn.active,
-.nav-btn[aria-current="page"] {
-  background-color: #f5b72c;
-  box-shadow:
-    inset 4px 4px 0px 0px #ffe5a0,
-    inset -4px -4px 0px 0px #aa7700;
-}
-
-/* ===== MAIN CONTENT WRAPPER ===== */
 .container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 40px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
-/* ===== HEADINGS ===== */
-h1 {
-  color: #1f2937;
-  font-weight: 700;
-  margin-bottom: 0.5em;
-  font-family: 'Roboto', sans-serif;
-}
-
-h2 {
-  color: #374151;
-  border-bottom: 2px solid #e5e7eb;
-  padding-bottom: 10px;
-  margin-top: 30px;
-  font-family: 'Roboto', sans-serif;
-}
-
-p {
-  color: #4b5563;
-  margin-bottom: 1.5em;
-}
-
-/* ===== FORM ===== */
-label {
-  display: block;
-  margin-bottom: 6px;
-  color: #374151;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-input[type="number"],
-select {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  background-color: #f9fafb;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  margin-bottom: 20px;
-  font-family: inherit;
-}
-
-input[type="number"]:focus,
-select:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  background-color: #fff;
-}
-
-/* Calculate Button */
-button {
-  display: inline-block;
-  width: 100%;
-  padding: 14px 20px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #fff;
-  background-color: #1f2937;
-  /* Dark slate */
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-  margin-top: 10px;
-  font-family: 'Roboto', sans-serif;
-}
-
-button:hover {
-  background-color: #111827;
-  transform: translateY(-1px);
-}
-
-button:active {
-  transform: translateY(1px);
-}
-
-/* ===== RESULTS ===== */
-#resultsSection {
-  margin-top: 40px;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-#result {
-  color: #059669;
-  font-weight: 600;
-}
-
-/* ===== TABLE ===== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
-}
-
-th,
-td {
-  padding: 16px;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-th {
-  background-color: #f3f4f6;
-  color: #1f2937;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-tbody tr:hover {
-  background-color: #f9fafb;
-}
-
-/* Result values emphasizing */
-td[id] {
-  font-family: 'Roboto', monospace;
-  /* Monospaced for numbers alignment can be nice, or just Roboto */
-  font-weight: 500;
-  color: #111827;
-}
-
-/* ===== INFO SECTIONS ===== */
-.info {
-  margin-top: 40px;
-  /* Space between main card and info cards */
-}
-
-/* Disclaimer Styling */
-.disclaimer {
-  background-color: #fffbeb;
-  border-left: 5px solid #f59e0b;
-  color: #92400e;
-}
-
-.disclaimer h2 {
-  color: #92400e;
-  border-color: #fcd34d;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  margin: 60px auto;
-  text-align: center;
-  color: #6b7280;
-  font-size: 0.9rem;
-}
-
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-  .container {
-    padding: 20px;
-    margin: 20px 10px;
-    border-radius: 8px;
-  }
-
-  .hero {
-    height: 180px;
-  }
-
-  h1 {
-    font-size: 1.75rem;
+.site-footer {
+    margin-top: 60px;
     text-align: center;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  /* Adjust buttons for mobile */
-  .nav-btn {
-    padding: 0.5rem 0.8rem;
-    font-size: 1.1rem;
-  }
-
-  /* Make table scrollable if needed */
-  #resultsSection {
-    overflow-x: auto;
-  }
-
-  table {
-    min-width: 100%;
-    /* Let it shrink but not too much */
-    font-size: 0.95rem;
-    /* Slightly smaller text */
-  }
-
-  th,
-  td {
-    padding: 12px 10px;
-  }
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    color: #666;
+    padding-top: 20px;
+    border-top: 1px solid #333;
 }

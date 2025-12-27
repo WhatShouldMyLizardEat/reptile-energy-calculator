@@ -2,154 +2,216 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZootilityBelt - Main Menu</title>
+    <meta name="description" content="ZootilityBelt - A collection of zoo and animal management tools">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .menu-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
-  <!-- Change the title per page -->
-  <title>Reptile Energy Calculator</title>
+        .menu-card {
+            flex: 1 1 300px;
+            max-width: 400px;
+            background: linear-gradient(135deg, #2a2a4a 0%, #1a1a2e 100%);
+            border: 3px solid #4a4a6a;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400;500;700&family=VT323&display=swap"
-    rel="stylesheet">
+        .menu-card:hover {
+            transform: translateY(-5px);
+            border-color: #7a7aaa;
+            box-shadow: 0 8px 25px rgba(100, 100, 200, 0.4);
+            background: linear-gradient(135deg, #3a3a5a 0%, #2a2a3e 100%);
+        }
 
+        .menu-card h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
 
-  <!-- FAVICONS (put favicon.ico at site root /favicon.ico for maximum compatibility) -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        .menu-card p {
+            font-family: 'VT323', monospace;
+            font-size: 1.3rem;
+            color: #aaa;
+            margin: 0;
+            line-height: 1.4;
+        }
 
-  <!-- Optional higher-resolution / platform icons (place these at site root or adjust paths) -->
-  <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
-  <link rel="manifest" href="site.webmanifest"> <!-- optional web app manifest -->
-  <meta name="theme-color" content="#ffffff"> <!-- used by some browsers for UI tint -->
+        .menu-card .icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: contain;
+        }
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+        .welcome-text {
+            text-align: center;
+            margin: 20px auto 40px;
+            max-width: 700px;
+            padding: 0 20px;
+        }
+
+        .welcome-text p {
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        /* Pixel Art Header Styles */
+        .pixel-header {
+            text-align: center;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #1a1a3a 0%, transparent 100%);
+            border-bottom: 4px solid #4a4a6a;
+            image-rendering: pixelated;
+        }
+
+        .pixel-header .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pixel-header .header-icon {
+            width: 150px;
+            height: 150px;
+            image-rendering: pixelated;
+            filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.5));
+            margin-right: 10px;
+        }
+
+        .pixel-header h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: #fff;
+            text-shadow:
+                4px 4px 0px #000,
+                -1px -1px 0px #000,
+                1px -1px 0px #000,
+                -1px 1px 0px #000;
+            margin: 0;
+            letter-spacing: 2px;
+            line-height: 1.4;
+        }
+
+        .pixel-header .subtitle {
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            color: #8a8aaa;
+            margin-top: 15px;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        /* Responsive Header */
+        @media (max-width: 768px) {
+            .pixel-header h1 {
+                font-size: 1.3rem;
+            }
+
+            .pixel-header .header-icon {
+                width: 120px;
+                height: 120px;
+            }
+
+            .pixel-header .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pixel-header {
+                padding: 20px 15px;
+            }
+
+            .pixel-header .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .pixel-header h1 {
+                font-size: 1rem;
+            }
+
+            .pixel-header .header-icon {
+                width: 100px;
+                height: 100px;
+            }
+
+            .pixel-header .subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Animated Dot Grid Background -->
+    <div id="dot-grid-bg" class="dot-grid"></div>
 
-  <!-- HERO IMAGE -->
-  <header class="hero"></header>
+    <div class="container">
+        <!-- Pixel Art Header -->
+        <header class="pixel-header">
+            <div class="header-content">
+                <img src="headericon.png" alt="ZootilityBelt Icon" class="header-icon">
+                <h1>ZootilityBelt</h1>
+            </div>
+            <p class="subtitle">Zoo & Animal Management Tools</p>
+        </header>
 
-  <!-- NAVIGATION (matches Komodo nutrition style) -->
-  <nav class="main-nav">
-    <a href="index.html" class="nav-btn">Energy Calculator</a>
-    <a href="nutrition.html" class="nav-btn">Komodo Nutrition</a>
-  </nav>
+        <div class="menu-container">
+            <a href="earnotchID-generator/index.html" class="menu-card">
+                <img src="earnotch.png" alt="Ear Notch" class="icon">
+                <h2>Ear Notch Generator</h2>
+                <p>Generate ear notch patterns based on internal ID numbers for hoofstock identification.</p>
+            </a>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
-    <h1>Reptile Energy Requirement Calculator</h1>
-    <p>
-      Estimate daily and weekly energy needs (kcal) and feeding amounts
-      for monitor lizards and snakes.
-    </p>
+            <a href="reptile-energy-calculator/index.html" class="menu-card">
+                <img src="reptile.png" alt="Reptile" class="icon">
+                <h2>Reptile Energy Calculator</h2>
+                <p>Calculate energy requirements and feeding schedules for reptiles.</p>
+            </a>
+        </div>
 
-    <label>Body weight (kg):</label><br>
-    <input type="number" id="weight" step="0.1"><br><br>
-
-    <label>Ambient temperature (°C):</label><br>
-    <input type="number" id="temperature" step="0.1" value="30"><br><br>
-
-    <label>Reptile group:</label><br>
-    <select id="group">
-      <option value="monitor">Monitor lizard</option>
-      <option value="komodo">Komodo dragon</option>
-      <option value="large_lizard">Other large lizard</option>
-      <option value="ambush_snake">Ambush snake</option>
-      <option value="active_snake">Active snake</option>
-      <option value="large_snake">Large snake</option>
-    </select><br><br>
-
-    <label>Prey type:</label><br>
-    <select id="prey">
-      <option value="rat">Whole rat</option>
-      <option value="mouse">Whole mouse</option>
-      <option value="chicken">Chicken meat</option>
-      <option value="fish">Whole fish</option>
-    </select><br><br>
-
-    <button onclick="calculateEnergy()">Calculate</button>
-
-    <!-- RESULTS -->
-    <div id="resultsSection" style="display:none;">
-      <h2>Calculated Results</h2>
-
-      <table>
-        <tr>
-          <th>Category</th>
-          <th>Value</th>
-        </tr>
-        <tr>
-          <td>Energy requirement (per day)</td>
-          <td id="kcalDay"></td>
-        </tr>
-        <tr>
-          <td>Energy requirement (per week)</td>
-          <td id="kcalWeek"></td>
-        </tr>
-        <tr>
-          <td>Total prey per week</td>
-          <td id="preyWeek"></td>
-        </tr>
-        <tr>
-          <td>Prey per feeding</td>
-          <td id="preyFeeding"></td>
-        </tr>
-        <tr>
-          <td>Feeding frequency</td>
-          <td id="feedingFreq"></td>
-        </tr>
-      </table>
+        <footer class="site-footer">
+            <p>
+                © 2025 ZootilityBelt &middot; Developed by Abdul Fattah
+            </p>
+        </footer>
     </div>
-  </div>
 
-  <!-- INFO SECTIONS -->
-  <div class="container info">
-    <h2>How this calculator works</h2>
-    <ul>
-      <li>Allometric metabolic scaling (BM<sup>0.75</sup>)</li>
-      <li>Q10 temperature correction (Q10 = 2, ref 30°C)</li>
-      <li>Average prey energy density</li>
-    </ul>
-  </div>
-
-  <div class="container info disclaimer">
-    <h2>Disclaimer</h2>
-    <p>
-      This calculator provides <strong>estimates only</strong> and is intended for
-      educational and husbandry-planning purposes. Combine outputs with body condition
-      scoring, behavior monitoring, and veterinary judgment.
-    </p>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    Reptile Energy Calculator v1.0<br>
-    Developed by Abdul Fattah
-  </footer>
-
-  <!-- JAVASCRIPT -->
-  <script src="script.js"></script>
-
-  <!-- Small script to mark the current nav button as active -->
-  <script>
-    (function () {
-      // Compare link href to page filename and add .active
-      const current = location.pathname.split('/').pop() || 'index.html';
-      document.querySelectorAll('.nav-btn').forEach(a => {
-        if (a.getAttribute('href') === current) {
-          a.classList.add('active');
-          a.setAttribute('aria-current', 'page');
-        }
-      });
-    })();
-  </script>
-
+    <script src="script.js"></script>
 </body>
 
 </html>

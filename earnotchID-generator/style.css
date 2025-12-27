@@ -1,0 +1,443 @@
+:root {
+    --bg-color: #e0e0d0;
+    /* Swapped: Outside is now the retro beige */
+    /* GameBoy-ish green/grey or just retro grey */
+    --container-bg: #ffffff;
+    /* Swapped: Inside is now white */
+    --text-color: #202020;
+    --border-color: #202020;
+    --accent-color: #4050a0;
+    --highlight-color: #f0f0f0;
+    --shadow-color: #000000;
+}
+
+body {
+    font-family: 'VT323', monospace;
+    background: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    font-size: 20px;
+    image-rendering: pixelated;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: var(--container-bg);
+    padding: 24px;
+    border: 4px solid var(--border-color);
+    box-shadow: 8px 8px 0px var(--shadow-color);
+    border-radius: 0;
+}
+
+.site-header {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+    border: 4px solid var(--border-color);
+    image-rendering: pixelated;
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    font-size: 1.5em;
+    /* Adjusted for the wide font */
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+    line-height: 1.5;
+}
+
+h2 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.0em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.input-section {
+    border: 4px solid var(--border-color);
+    background: #ffffff;
+    padding: 30px;
+    margin-bottom: 30px !important;
+    box-shadow: 4px 4px 0px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    /* Labels 1fr (auto), Inputs fixed width */
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.input-row label {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.4em !important;
+    margin: 0;
+    /* Clear default margins */
+}
+
+.input-row input {
+    width: 100%;
+    /* Fill the 300px column */
+    box-sizing: border-box;
+    /* Ensure padding doesn't break width */
+}
+
+label {
+    font-family: 'VT323', monospace !important;
+    /* Override inline styles */
+    font-size: 1.3em !important;
+    text-transform: uppercase;
+}
+
+input[type="number"],
+input[type="text"] {
+    border: 4px solid var(--border-color);
+    background: #fff;
+    font-family: 'VT323', monospace !important;
+    font-size: 1.3em !important;
+    padding: 8px !important;
+    border-radius: 0;
+    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+    background: #f8f8ff;
+}
+
+.warning-text {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+    display: none;
+    /* Hidden by default */
+    font-weight: bold;
+}
+
+.ears {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.ear {
+    flex: 1;
+    min-width: 300px;
+    border: 4px solid var(--border-color);
+    background: #fff;
+    padding: 15px;
+    box-shadow: 4px 4px 0px var(--shadow-color);
+}
+
+.ear h2 {
+    text-align: center;
+    border-bottom: 4px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-top: 0;
+    background: var(--accent-color);
+    color: #fff;
+    padding-top: 10px;
+    margin: -15px -15px 15px -15px;
+    /* Bleed to edges */
+}
+
+.ear label {
+    display: flex;
+    /* Better alignment */
+    align-items: center;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 1.4em !important;
+}
+
+.ear input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 4px solid var(--border-color);
+    margin-right: 15px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    background: #fff;
+}
+
+.ear input[type="checkbox"]:checked {
+    background: #00ff00;
+    /* Terminal green for high visibility */
+    box-shadow: 2px 2px 0px #000;
+    /* Pop effect */
+}
+
+/* Pseudo-element for the checkmark is harder with just CSS blocks, 
+   so let's just make it a solid block or an 'X' */
+.ear input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: #000;
+    /* Black box inside green box */
+}
+
+.result {
+    margin-top: 30px;
+    padding: 20px;
+    background: #202020;
+    color: #00ff00;
+    /* Retro terminal green */
+    border: 4px solid var(--border-color);
+    box-shadow: 4px 4px 0px var(--shadow-color);
+    font-family: 'VT323', monospace;
+    font-size: 1.5em;
+}
+
+/* Diagram Styles */
+.diagram-container {
+    position: relative;
+    margin: 40px auto;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    border: 4px solid var(--border-color);
+    padding: 10px;
+    background: #fff;
+    box-shadow: 4px 4px 0px var(--shadow-color);
+}
+
+.diagram-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    image-rendering: pixelated;
+    /* Try to make not blurry */
+}
+
+/* Square Markers */
+.notch-marker {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #ff0000;
+    border: 2px solid #000;
+    border-radius: 0;
+    /* Square */
+    display: none;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* Keep position logic same */
+/* Left Ear */
+#marker-A {
+    top: 47.2%;
+    left: 59.7%;
+}
+
+#marker-B {
+    top: 42.8%;
+    left: 63.2%;
+}
+
+#marker-C {
+    top: 39.7%;
+    left: 66.3%;
+}
+
+#marker-D {
+    top: 40.0%;
+    left: 75.6%;
+}
+
+#marker-E {
+    top: 52.0%;
+    left: 69.6%;
+}
+
+#marker-F {
+    top: 53.4%;
+    left: 62.7%;
+}
+
+/* Right Ear */
+#marker-G {
+    top: 48.7%;
+    left: 35.7%;
+}
+
+#marker-H {
+    top: 45.7%;
+    left: 31.3%;
+}
+
+#marker-I {
+    top: 43.7%;
+    left: 27.3%;
+}
+
+#marker-J {
+    top: 45.2%;
+    left: 19.7%;
+}
+
+#marker-K {
+    top: 54.7%;
+    left: 24.2%;
+}
+
+#marker-L {
+    top: 56.4%;
+    left: 33.5%;
+}
+
+/* Button Styles */
+.action-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: 4px solid var(--border-color);
+    padding: 15px 30px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.0em;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--shadow-color);
+    transition: transform 0.1s, box-shadow 0.1s;
+    text-transform: uppercase;
+}
+
+.action-btn:hover {
+    background-color: #5060b0;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--shadow-color);
+}
+
+.action-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--shadow-color);
+}
+
+.site-footer {
+    margin-top: 40px;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 1.0em;
+    color: var(--text-color);
+    border-top: 4px solid var(--border-color);
+    padding-top: 20px;
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin: 5mm;
+        /* Very small margins */
+    }
+
+    body {
+        background: white;
+        color: black;
+        font-family: 'Courier New', monospace;
+        /* Fallback for print */
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        zoom: 0.75;
+        /* Scale down to 75% to fit everything */
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .container {
+        box-shadow: none;
+        border: none;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .site-header {
+        display: none !important;
+        /* Hide header completely */
+    }
+
+    h1 {
+        font-size: 1.2em;
+        /* Smaller title */
+        margin-bottom: 10px;
+        text-shadow: none;
+    }
+
+    .input-section {
+        margin-bottom: 10px !important;
+        padding: 10px;
+        border: 2px solid #000;
+        box-shadow: none;
+    }
+
+    .ears {
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    .ear {
+        padding: 10px;
+        min-width: auto;
+        /* Allow shrinking */
+        border: 2px solid #000;
+        box-shadow: none;
+    }
+
+    .result {
+        margin-top: 10px;
+        padding: 10px;
+        border: 2px solid #000;
+        box-shadow: none;
+        color: black;
+        /* Better for print */
+        background: transparent;
+    }
+
+    .diagram-container {
+        margin: 10px auto;
+        border: none;
+        /* Clean look */
+        box-shadow: none;
+    }
+
+    .print-actions,
+    .action-btn {
+        display: none !important;
+        /* Hide buttons */
+    }
+
+    .notch-marker {
+        border: 1px solid #000;
+    }
+
+    /* Ensure background graphics (like red dots) are printed */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+}

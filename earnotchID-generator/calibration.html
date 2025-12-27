@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notch Calibration Tool</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        #container {
+            position: relative;
+            display: inline-block;
+        }
+
+        img {
+            max-width: 100%;
+            cursor: crosshair;
+        }
+
+        .marker {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: red;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Notch Calibration Tool</h1>
+    <p>Please click on the diagram to set the position for the <strong>current notch: <span
+                id="currentNotch">A</span></strong></p>
+    <div id="container">
+        <img src="diagram.png" id="diagram">
+    </div>
+
+    <h3>CSS Output (Copy this):</h3>
+    <textarea id="output" rows="15" cols="60"></textarea>
+
+    <script>
+        const notches = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
+        let currentIndex = 0;
+        const container = document.getElementById('container');
+        const img = document.getElementById('diagram');
+        const output = document.getElementById('output');
+        const currentNotchSpan = document.getElementById('currentNotch');
+
+        img.addEventListener('click', (e) => {
+            if (currentIndex >= notches.length) return;
+
+            const rect = img.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Calculate percentages
+            const leftPercent = (x / rect.width * 100).toFixed(1);
+            const topPercent = (y / rect.height * 100).toFixed(1);
+
+            // Create visual marker
+            const marker = document.createElement('div');
+            marker.className = 'marker';
+            marker.style.left = leftPercent + '%';
+            marker.style.top = topPercent + '%';
+            container.appendChild(marker);
+
+            // Generate CSS
+            const notch = notches[currentIndex];
+            let rotation = '0deg'; // Default
+            // Standard rotation guesses based on typical ear notch charts
+            if (['A', 'B', 'G', 'H'].includes(notch)) rotation = '180deg'; // Bottom
+            if (['C', 'D'].includes(notch)) rotation = '90deg'; // Left side
+            if (['I', 'J'].includes(notch)) rotation = '-90deg'; // Right side
+
+            const cssLine = `#marker-${notch} { top: ${topPercent}%; left: ${leftPercent}%; transform: rotate(${rotation}); }\n`;
+            output.value += cssLine;
+
+            // correct rotation logic could be added per user but let's stick to base
+
+            currentIndex++;
+            if (currentIndex < notches.length) {
+                currentNotchSpan.textContent = notches[currentIndex];
+            } else {
+                currentNotchSpan.textContent = "Done! Copy the CSS below.";
+                alert("All notches marked. Please copy the CSS from the text area.");
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Change the title per page -->
+  <title>Reptile Energy Calculator</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400;500;700&family=VT323&display=swap"
+    rel="stylesheet">
+
+
+  <!-- FAVICONS (put favicon.ico at site root /favicon.ico for maximum compatibility) -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Optional higher-resolution / platform icons (place these at site root or adjust paths) -->
+  <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+  <link rel="manifest" href="site.webmanifest"> <!-- optional web app manifest -->
+  <meta name="theme-color" content="#ffffff"> <!-- used by some browsers for UI tint -->
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- HERO IMAGE -->
+  <header class="hero"></header>
+
+  <!-- NAVIGATION (matches Komodo nutrition style) -->
+  <nav class="main-nav">
+    <a href="index.html" class="nav-btn">Energy Calculator</a>
+    <a href="nutrition.html" class="nav-btn">Komodo Nutrition</a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <h1>Reptile Energy Requirement Calculator</h1>
+    <p>
+      Estimate daily and weekly energy needs (kcal) and feeding amounts
+      for monitor lizards and snakes.
+    </p>
+
+    <label>Body weight (kg):</label><br>
+    <input type="number" id="weight" step="0.1"><br><br>
+
+    <label>Ambient temperature (°C):</label><br>
+    <input type="number" id="temperature" step="0.1" value="30"><br><br>
+
+    <label>Reptile group:</label><br>
+    <select id="group">
+      <option value="monitor">Monitor lizard</option>
+      <option value="komodo">Komodo dragon</option>
+      <option value="large_lizard">Other large lizard</option>
+      <option value="ambush_snake">Ambush snake</option>
+      <option value="active_snake">Active snake</option>
+      <option value="large_snake">Large snake</option>
+    </select><br><br>
+
+    <label>Prey type:</label><br>
+    <select id="prey">
+      <option value="rat">Whole rat</option>
+      <option value="mouse">Whole mouse</option>
+      <option value="chicken">Chicken meat</option>
+      <option value="fish">Whole fish</option>
+    </select><br><br>
+
+    <button onclick="calculateEnergy()">Calculate</button>
+
+    <!-- RESULTS -->
+    <div id="resultsSection" style="display:none;">
+      <h2>Calculated Results</h2>
+
+      <table>
+        <tr>
+          <th>Category</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Energy requirement (per day)</td>
+          <td id="kcalDay"></td>
+        </tr>
+        <tr>
+          <td>Energy requirement (per week)</td>
+          <td id="kcalWeek"></td>
+        </tr>
+        <tr>
+          <td>Total prey per week</td>
+          <td id="preyWeek"></td>
+        </tr>
+        <tr>
+          <td>Prey per feeding</td>
+          <td id="preyFeeding"></td>
+        </tr>
+        <tr>
+          <td>Feeding frequency</td>
+          <td id="feedingFreq"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- INFO SECTIONS -->
+  <div class="container info">
+    <h2>How this calculator works</h2>
+    <ul>
+      <li>Allometric metabolic scaling (BM<sup>0.75</sup>)</li>
+      <li>Q10 temperature correction (Q10 = 2, ref 30°C)</li>
+      <li>Average prey energy density</li>
+    </ul>
+  </div>
+
+  <div class="container info disclaimer">
+    <h2>Disclaimer</h2>
+    <p>
+      This calculator provides <strong>estimates only</strong> and is intended for
+      educational and husbandry-planning purposes. Combine outputs with body condition
+      scoring, behavior monitoring, and veterinary judgment.
+    </p>
+  </div>
+
+  <!-- BACK TO MAIN MENU -->
+  <div class="container" style="text-align: center; margin-top: 30px;">
+    <a href="../index.html" class="nav-btn">← Back to Main Menu</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Reptile Energy Calculator v1.0<br>
+    Developed by Abdul Fattah
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
+
+  <!-- Small script to mark the current nav button as active -->
+  <script>
+    (function () {
+      // Compare link href to page filename and add .active
+      const current = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-btn').forEach(a => {
+        if (a.getAttribute('href') === current) {
+          a.classList.add('active');
+          a.setAttribute('aria-current', 'page');
+        }
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
