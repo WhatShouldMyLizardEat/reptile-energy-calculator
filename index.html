@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZootilityBelt - Main Menu</title>
     <meta name="description" content="ZootilityBelt - A collection of zoo and animal management tools">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -16,27 +17,31 @@
         .menu-container {
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: center;
-            gap: 30px;
-            max-width: 900px;
+            align-items: stretch;
+            gap: 25px;
+            max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
         .menu-card {
-            flex: 1 1 300px;
-            max-width: 400px;
+            flex: 1 1 0;
+            min-width: 0;
             background: linear-gradient(135deg, #2a2a4a 0%, #1a1a2e 100%);
             border: 3px solid #4a4a6a;
             border-radius: 15px;
-            padding: 30px;
+            padding: 25px 20px;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         .menu-card:hover {
@@ -48,9 +53,10 @@
 
         .menu-card h2 {
             font-family: 'Press Start 2P', cursive;
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: #fff;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            line-height: 1.8;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
@@ -136,6 +142,16 @@
 
         /* Responsive Header */
         @media (max-width: 768px) {
+            .menu-container {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .menu-card {
+                flex: 1 1 calc(50% - 10px);
+                min-width: 200px;
+            }
+
             .pixel-header h1 {
                 font-size: 1.3rem;
             }
@@ -201,6 +217,12 @@
                 <img src="reptile.png" alt="Reptile" class="icon">
                 <h2>Reptile Energy Calculator</h2>
                 <p>Calculate energy requirements and feeding schedules for reptiles.</p>
+            </a>
+
+            <a href="reptile-zone/index.html" class="menu-card">
+                <img src="reptile-zone.png" alt="Reptile Zone" class="icon">
+                <h2>Ferguson Zone Finder</h2>
+                <p>Find the Ferguson Zone and UV requirements for reptile species.</p>
             </a>
         </div>
 

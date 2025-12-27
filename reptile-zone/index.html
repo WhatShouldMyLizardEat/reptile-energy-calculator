@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reptile Ferguson Zone Finder - ZootilityBelt</title>
+    <meta name="description" content="Find the Ferguson Zone and UV requirements for reptile species">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Animated Dot Grid Background -->
+    <div id="dot-grid-bg" class="dot-grid"></div>
+
+    <div class="container">
+        <!-- Back Button -->
+        <a href="../index.html" class="back-btn">
+            <span class="back-arrow">◄</span> Back to Main Menu
+        </a>
+
+        <!-- Pixel Art Header -->
+        <header class="pixel-header">
+            <div class="header-content">
+                <div class="header-icon">🦎</div>
+                <h1>Ferguson Zone Finder</h1>
+            </div>
+            <p class="subtitle">Find UV Requirements for Reptile Species</p>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-box">
+                <label for="searchInput" class="search-label">Search Species</label>
+                <input type="text" id="searchInput"
+                    placeholder="Enter species or common name (e.g. Varanus komodoensis)" onkeyup="searchSpecies()">
+                <div class="search-hint">Start typing to search...</div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="result-card" id="resultBox">
+            <h2 class="result-title">Species Information</h2>
+            <div class="result-grid">
+                <div class="result-item">
+                    <span class="result-label">Scientific Name</span>
+                    <span class="result-value" id="sciName">—</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Common Name</span>
+                    <span class="result-value" id="commonName">—</span>
+                </div>
+                <div class="result-item highlight">
+                    <span class="result-label">Ferguson Zone</span>
+                    <span class="result-value zone-value" id="zone">—</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Recommended UV Index</span>
+                    <span class="result-value uv-value" id="uvi">—</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Not Found Message -->
+        <div class="not-found" id="notFound">
+            <div class="not-found-icon">🔍</div>
+            <p>Species not found in database.</p>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <h2>About Ferguson Zones</h2>
+            <p>Ferguson Zones classify reptile UV requirements based on their natural habitat and behavior. Zones range
+                from 1 (shade dwellers) to 4 (full sun baskers).</p>
+            <div class="zone-guide">
+                <div class="zone-item zone-1">
+                    <span class="zone-number">Zone 1</span>
+                    <span class="zone-desc">Crepuscular / Shade dwellers</span>
+                    <span class="zone-uvi">UVI 0.0 - 0.7</span>
+                </div>
+                <div class="zone-item zone-2">
+                    <span class="zone-number">Zone 2</span>
+                    <span class="zone-desc">Partial sun / Occasional baskers</span>
+                    <span class="zone-uvi">UVI 0.7 - 1.0</span>
+                </div>
+                <div class="zone-item zone-3">
+                    <span class="zone-number">Zone 3</span>
+                    <span class="zone-desc">Open / Partial sun baskers</span>
+                    <span class="zone-uvi">UVI 1.0 - 2.6</span>
+                </div>
+                <div class="zone-item zone-4">
+                    <span class="zone-number">Zone 4</span>
+                    <span class="zone-desc">Mid-day / Full sun baskers</span>
+                    <span class="zone-uvi">UVI 2.6 - 3.5+</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p>© 2025 ZootilityBelt · Developed by Abdul Fattah</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>
