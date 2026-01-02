@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoo Enrichment Program Randomizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1><img src="../favicon.png" alt="Zoo Icon" class="header-icon"> Zoo Enrichment Program Randomizer</h1>
+        <p class="subtitle">Create randomized weekly and daily enrichment schedules for your animals</p>
+
+        <div class="input-section">
+            <div class="form-group">
+                <label for="institution">Zoo Institution (optional):</label>
+                <input type="text" id="institution" placeholder="e.g., San Diego Zoo">
+            </div>
+
+            <div class="form-group">
+                <label for="area">Area/Enclosure (optional):</label>
+                <input type="text" id="area" placeholder="e.g., African Savanna, Primate Pavilion">
+            </div>
+
+            <div class="form-group">
+                <label for="month">Select Month and Year:</label>
+                <input type="month" id="month" required>
+            </div>
+
+            <div class="form-group">
+                <label for="monthly">Monthly Enrichment Items (comma-separated):</label>
+                <textarea id="monthly"
+                    placeholder="e.g., Pool party, Seasonal decorations, Special feeding event"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Weekly Enrichment Items:</label>
+                <button class="btn-add" onclick="addWeeklyItem()">+ Add Item</button>
+                <div class="items-section" id="weeklyItems"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Daily Enrichment Items:</label>
+                <button class="btn-add" onclick="addDailyItem()">+ Add Item</button>
+                <div class="items-section" id="dailyItems"></div>
+            </div>
+        </div>
+
+        <button class="btn-generate" onclick="generateSchedule()">Generate Enrichment Schedule</button>
+
+        <div class="results" id="results">
+            <h2>Enrichment Schedule</h2>
+            <div id="scheduleOutput"></div>
+            <button class="btn-print" onclick="window.print()">🖨️ Print/Save Schedule</button>
+            <button class="btn-order-list" onclick="generateOrderList()">📋 Generate Monthly Item Order List</button>
+            <div class="order-list-section" id="orderListSection"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Zoo Enrichment Program | Designed to enhance animal welfare and behavioral diversity</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
